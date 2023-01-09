@@ -1,0 +1,213 @@
+.. _sec_1:
+
+########################################
+実行ファイルの作成
+########################################
+
+.. _sec_PHITSUDM_compile:
+
+PHITS-UDM のコンパイル方法
+########################################
+
+.. hint ::
+
+    PHITS-UDM をコンパイルして実行ファイルを作成する前に、オリジナルの PHITS がコンパイルできるか確認することをお勧めします。（参考：:ref:`sec_PHITS_compile`）
+
+* PHITS-UDM 関連ファイル（phits-udm-********.zip）を :ref:`ここからダウンロード<sec_download>` する。
+
+（すでにダウンロードしている場合は次に進む。）
+
+* PHITSフォルダを以下のように想定する。
+
+::
+
+    PhitsFolder=/Users/you/phits329A/phits
+
+* ダウンロードした ``phits-udm-********.zip`` を展開し、``phits-udm`` フォルダを得る。
+
+::
+
+    phits-udm
+     |- examples
+     |- phits-udm-for-PHITS3.29-python2.py
+     |- phits-udm-for-PHITS3.29-python3.py
+     |- phits-udm-sample1/
+     |- udm_Parameter.f
+
+
+* 展開フォルダ ``phits-udm`` を PHITS フォルダにコピーする。
+
+::
+
+    cp -r <Your Download Folder>/phits-udm ${PhitsFolder}
+
+* ``phits-udm`` に移動する。
+
+::
+
+    cd ${PhitsFolder}/phits-udm/
+
+* Python スクリプトを実行する。
+
+::
+
+    (Python 3の場合) python phits-udm-for-PHITS3.29-python3.py
+    (Python 2の場合) python phits-udm-for-PHITS3.29-python2.py
+
+成功すれば、PHITS フォルダ内の ``src`` と同じ階層に ``src-udm/`` フォルダが生成され、以下のように表示される。
+
+::
+
+    !! Completed !!
+
+（エラーが表示される場合は、教えて下さい。[:ref:`sec_contact`]）
+
+* ダウンロードした ``phits-udm/sample-code-1`` 内の PHITS-UDM のサンプルコードを ``src-udm/`` にコピーする。
+
+::
+
+    cp sample-code-1/* ../src-udm/.
+
+* ``src-udm/`` フォルダに移動する。
+
+::
+
+    cd ${PhitsFolder}/src-udm/
+
+* ``src-udm/`` 内の ``makefile`` を開き、8行目のフラグ変数 ``ENVFLAGS`` に利用可能なコンパイラを指定する。
+
+例）Linux の Intel Fortran でコンパイルする場合
+::
+
+    ENVFLAGS = LinIfort
+
+例）Linux の gfortran の場合
+::
+
+    ENVFLAGS = LinGfort
+
+例）Mac の gfortran の場合
+::
+
+    ENVFLAGS = MacGfort
+
+* 必要に応じて、上で指定した ``ENVFLAGS`` を選んだ場合にデフォルトで使用されるコンパイラを変更する。
+
+例）Mac の gfortran を使う場合、``makefile`` の243行目を以下のように修正する
+::
+
+    （修正前）FC        = gfortran-mp-4.8
+    （修正後）FC        = gfortran
+
+* ``src-udm`` 内で make する。
+
+::
+
+    make
+
+* コンパイルに成功したら、PHITS-UDM 用の実行ファイルが生成される。
+
+（例：Mac, gfortran の場合）
+
+::
+
+    ls ${PhitsFolder}/phits_MacGfort-udm
+
+問題なく実行ファイルが生成されたら、以下を参考にして次に進んでください。
+
+    - :ref:`sec_exe_test`
+    - :ref:`sec_how_to_phitsudm`
+
+失敗したら以下の [:ref:`sec_PHITS_compile`] に従って、PHITS オリジナルがコンパイルできるか確認する。
+
+PHITS オリジナルはコンパイルできるが、PHITS-UDM だけコンパイルできない場合は教えて下さい。[:ref:`sec_contact`]
+
+以下のコンパイラでPHITS-UDMをコンパイルできることは確認済み。他のコンパイラ可能なバージョンをがあったら教えて下さい。
+
+* ifort (Linux Intel Fortran)
+* gfotran (Linux. gcc version 8.3.0 (GCC))
+* gfotran (MacOS. gcc version 10.3.0 (Homebrew GCC 10.3.0))
+
+
+
+
+
+|
+|
+
+
+.. _sec_PHITS_compile:
+
+オリジナル版 PHITS のコンパイル方法
+########################################
+
+* PHITS フォルダのパスを以下のように想定する。
+
+::
+
+    PhitsFolder=/Users/you/phits329A/phits/
+
+* PHITS フォルダ内の ``src`` フォルダに移動
+
+::
+
+    cd ${PhitsFolder}/src
+
+
+* ``makefile`` を開き、8行目のフラグ変数 ``ENVFLAGS`` に利用可能なコンパイラを指定する。
+
+例）Linux の Intel Fortran でコンパイルする場合
+
+::
+
+    ENVFLAGS = LinIfort
+
+例）Linux の gfortran の場合
+
+::
+
+    ENVFLAGS = LinGfort
+
+例）Mac の gfortran の場合
+
+::
+
+    ENVFLAGS = MacGfort
+
+
+* 必要に応じて ``makefile`` 内の対応する箇所を修正する。
+
+例）Mac の gfortran を使う場合、243行目を以下のように修正する
+
+::
+
+    （修正前）FC        = gfortran-mp-4.8
+    （修正後）FC        = gfortran
+
+
+* ``src`` フォルダ内で ``make`` する（コンパイルする）
+
+::
+
+    cd ${PhitsFolder}/src
+    make
+
+
+* コンパイルに成功したら PHITS フォルダに実行ファイルが生成される。
+
+例：Mac, gfortran の場合
+
+::
+
+    ${PhitsFolder}/phits_MacGfort
+
+
+* 失敗したら、以下を参考にする。
+
+    - `マニュアルの10章 <https://phits.jaea.go.jp/manual/manualJ-phits.pdf>`_
+    - ${PhitsFolder}/phits/manual/manualJ-phits.pdf
+    - ${PhitsFolder}/phits/document/Install_gfortran_Windows-jp.pdf
+    - `PHITS Forum <https://meteor.nucl.kyushu-u.ac.jp/phitsforum/>`_
+
+
+

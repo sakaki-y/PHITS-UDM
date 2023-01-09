@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PHITS-UDM</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="ダウンロード" href="tree_how_to_use/download/main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> PHITS-UDM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">使いかた</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tree_how_to_use/download/main.html">ダウンロード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree_how_to_use/1/main.html">実行ファイルの作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree_how_to_use/2/main.html">実行ファイルのテスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree_how_to_use/3/main.html">PHITS-UDM の使い方</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tree_user_code/user_codes.html">ユーザーコード集</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">その他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tree_others/contact.html">連絡先</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">PHITS-UDM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">PHITS-UDM</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="phits-udm">
+<h1>PHITS-UDM<a class="headerlink" href="#phits-udm" title="この見出しへのパーマリンク"></a></h1>
+<p><strong>PHITS-UDMは、PHITSに新しい相互作用と粒子を組み込める拡張機能です。</strong></p>
+<p>以下の２つのセクションが導入されています：</p>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">user</span> <span class="pre">defined</span> <span class="pre">interaction</span> <span class="pre">]</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">user</span> <span class="pre">defined</span> <span class="pre">particle</span> <span class="pre">]</span></code></div>
+</div>
+<p>また、組み込みに使用したオリジナルのソース・コードを公開することで、他のユーザーがそれを利用することができます。</p>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">user</span> <span class="pre">defined</span> <span class="pre">interaction</span> <span class="pre">]</span></code></p>
+<p>ユーザーは、組み込みたい相互作用の断面積、分布、そしてそれを引き起こす入射粒子を、テンプレート化された fortran コード に記述します。そのコードと共に PHITS を再コンパイルすることで、その相互作用が組み込まれます。</p>
+<p>テンプレート化された fortran コードは、最大限簡単化されています。詳しくは、[<a class="reference internal" href="tree_how_to_use/3/main.html#sec-sample-code"><span class="std std-ref">サンプルコードの解説 / ユーザーコードの作り方</span></a>] を参照。</p>
+<p>現在のバージョンでは、以下の入射粒子が対応しています。（他の粒子の場合でも希望があれば気軽に教えて下さい。）</p>
+<ul class="simple">
+<li><p>光子</p></li>
+<li><p>電子、陽電子</p></li>
+<li><p>ミューオン</p></li>
+<li><p>ユーザー定義粒子</p></li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">user</span> <span class="pre">defined</span> <span class="pre">particle</span> <span class="pre">]</span></code></p>
+<p>ユーザーは、ユーザー定義粒子の質量、寿命、崩壊パターンを、テンプレート化された fortran コード に記述する。それを用いて PHITS を再コンパイルすることでその相互作用が実装される。</p>
+<p>ユーザー定義粒子の <code class="docutils literal notranslate"><span class="pre">kf-code</span></code> として</p>
+<p><span class="math notranslate nohighlight">\(900000 \leq |\text{kf-code}| \leq 999999\)</span></p>
+<p>が利用できる。その kf-code を tally セクションの <code class="docutils literal notranslate"><span class="pre">part</span></code> や source セクションの <code class="docutils literal notranslate"><span class="pre">proj</span></code> において使用できる。</p>
+<p>PHITS に既存の粒子の崩壊パターンの追加や、寿命の変更も簡単かつ柔軟に行える。</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line">連絡先：坂木 泰仁 (KEK)</div>
+<div class="line"><cite>sakakiy _AT_ post.kek.jp</cite></div>
+</div>
+<p>共同研究者：安部 晋一郎 (JAEA)、岩瀬 広 (KEK)</p>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tree_how_to_use/download/main.html" class="btn btn-neutral float-right" title="ダウンロード" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Yasuhito Sakaki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

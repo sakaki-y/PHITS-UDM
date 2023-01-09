@@ -1,0 +1,135 @@
+.. _sec_exe_test:
+
+############################################################
+実行ファイルのテスト
+############################################################
+
+example ファイルの実行方法
+##############################
+
+ここでは、:ref:`PHITS-UDMをコンパイルした時<sec_PHITSUDM_compile>` と同様に、PHITSフォルダのパスを以下のように想定する。
+
+::
+
+    PhitsFolder=/Users/you/phits329A/phits/
+
+``PHITS-UDM`` をコンパイルした際にダウンロードしたフォルダ内の ``examples/`` フォルダに移動する。
+
+::
+
+    cd ${PhitsFolder}/phits-udm/examples
+
+その中の ``01/`` フォルダに移動する。
+
+::
+
+    cd 01/
+
+その中のインプットファイル (``main.inp``) を先程コンパイルした実行ファイルで実行する。
+
+例）Mac, gfortran でコンパイルした実行ファイルの場合。
+
+::
+
+    ../../../phits_MacGfort-udm < main.inp
+
+または
+
+::
+
+    ${PhitsFolder}/phits_MacGfort-udm < main.inp
+
+成功すれば例えば以下の画像ファイルが生成される。``part = 900000`` で表される粒子はユーザー定義粒子であり、``part = nu_e`` はユーザー定義粒子から崩壊して生成された電子ニュートリノである。
+
+::
+
+    1_flux_xz.eps
+    2_production_energy.eps
+    3_decay_energy.eps
+
+| :download:`1_flux_xz.pdf`
+| :download:`2_production_energy.pdf`
+| :download:`3_decay_energy.pdf`
+
+
+* PHITS-UDM の詳しい使い方は以下を参照。
+    [:ref:`sec_how_to_phitsudm`]
+
+|
+|
+
+
+
+example ファイルの解説
+##############################
+
+ダウンロードした ``sample-code-1/`` 内に、ユーザー定義ファイルのサンプルが格納されていた。
+
+::
+
+    $ ls ${PhitsFolder}/phits-udm/sample-code-1/*
+
+    udm_Manager.f90
+    udm_int_sample1.f90
+    udm_int_sample2.f90
+    udm_part_sample1.f90
+    udm_part_sample2.f90
+
+
+ユーザー定義相互作用は ``udm_int_*.f90`` に、ユーザー定義粒子は ``udm_part_*.f90`` に記述される。
+これらのユーザー定義ファイルの作成方法の詳細は、[:ref:`sec_how_to_phitsudm`] などを参照。
+
+* ``udm_int_sample1.f90``
+
+    電子または陽電子と原子との相互作用を定義したサンプルファイル。電子または陽電子から、ユーザー定義粒子が放出される相互作用が定義されている。
+
+* ``udm_part_sample1.f90``
+
+    質量 50 MeV、寿命 0.1 ns の中性粒子を定義。
+    2または3個の電子ニュートリノに崩壊する。（非物理的だがわかりやすさのため）
+
+* ``udm_Manager.f90``
+
+    利用したいユーザー定義ファイルのモジュール名を列挙するマネージャ・ファイル。
+
+
+* ``examples/01/main.inp``
+
+    :math:`2 \times 2 \times 10 ~{\rm cm}^3` の水ターゲットに電子ビームを打ち込み生成される新粒子（kf-code = 900000）を観察する。
+
+        - ``1_flux_xz.eps``
+
+            ターゲットで発生する電子、陽電子、光子、新粒子のフラックス。また、新粒子の崩壊で生じる電子ニュートリノ（kf-code = 12）のフラックス。
+
+        - ``2_production_energy.eps``
+
+            生成される新粒子などのエネルギー分布。
+
+        - ``3_decay_energy.eps``
+
+            新粒子の崩壊で生じる電子ニュートリノのエネルギー分布。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

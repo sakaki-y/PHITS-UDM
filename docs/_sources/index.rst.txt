@@ -1,0 +1,84 @@
+##############################
+PHITS-UDM
+##############################
+
+
+**PHITS-UDMは、PHITSに新しい相互作用と粒子を組み込める拡張機能です。**
+
+以下の２つのセクションが導入されています：
+
+
+| ``[ user defined interaction ]``
+| ``[ user defined particle ]``
+
+
+また、組み込みに使用したオリジナルのソース・コードを公開することで、他のユーザーがそれを利用することができます。
+
+------------------------
+
+``[ user defined interaction ]``
+
+ユーザーは、組み込みたい相互作用の断面積、分布、そしてそれを引き起こす入射粒子を、テンプレート化された fortran コード に記述します。そのコードと共に PHITS を再コンパイルすることで、その相互作用が組み込まれます。
+
+テンプレート化された fortran コードは、最大限簡単化されています。詳しくは、[:ref:`sec_sample_code`] を参照。
+
+現在のバージョンでは、以下の入射粒子が対応しています。（他の粒子の場合でも希望があれば気軽に教えて下さい。）
+
+* 光子
+* 電子、陽電子
+* ミューオン
+* ユーザー定義粒子
+
+
+------------------------
+
+``[ user defined particle ]``
+
+ユーザーは、ユーザー定義粒子の質量、寿命、崩壊パターンを、テンプレート化された fortran コード に記述する。それを用いて PHITS を再コンパイルすることでその相互作用が実装される。
+
+ユーザー定義粒子の ``kf-code`` として 
+
+:math:`900000 \leq |\text{kf-code}| \leq 999999`
+
+が利用できる。その kf-code を tally セクションの ``part`` や source セクションの ``proj`` において使用できる。
+
+PHITS に既存の粒子の崩壊パターンの追加や、寿命の変更も簡単かつ柔軟に行える。
+
+------------------------
+
+| 連絡先：坂木 泰仁 (KEK)
+| `sakakiy _AT_ post.kek.jp`
+
+共同研究者：安部 晋一郎 (JAEA)、岩瀬 広 (KEK)
+
+------------------------
+
+
+.. toctree::
+   :caption: 使いかた
+   :hidden:
+
+   /tree_how_to_use/download/main
+   /tree_how_to_use/1/main
+   /tree_how_to_use/2/main
+   /tree_how_to_use/3/main
+
+
+.. toctree::
+   :caption: Examples
+   :hidden:
+
+   /tree_user_code/user_codes
+
+.. toctree::
+   :caption: その他
+   :hidden:
+
+   /tree_others/contact
+
+
+
+
+
+
+
