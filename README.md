@@ -1,6 +1,8 @@
-詳しくは以下のドキュメントを参照：
+# PHITS-UDM
 
-https://sakaki-y.github.io/PHITS-UDM/
+Document: https://sakaki-y.github.io/PHITS-UDM/
+
+---
 
 **PHITS-UDMは、PHITSに新しい相互作用と粒子を組み込める拡張機能です。**
 
