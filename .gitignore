@@ -1,1 +1,6 @@
 .DS_Store
+build
+gen_docs_for_github.sh
+make.bat
+Makefile
+source
