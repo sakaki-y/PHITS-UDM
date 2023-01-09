@@ -6,7 +6,7 @@ Document: https://sakaki-y.github.io/PHITS-UDM/
 
 **PHITS-UDMは、PHITSに新しい相互作用と粒子を組み込める拡張機能です。**
 
-以下の２つのセクションが導入されています：
+以下の２つのセクションが導入されます：
 
 * [ user defined interaction ]
 * [ user defined particle ]
