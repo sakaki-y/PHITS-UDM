@@ -3,7 +3,7 @@ PHITS-UDM
 ##############################
 
 
-**PHITS-UDM は、PHITSに新しい相互作用と粒子を組み込める拡張機能です。**
+**PHITS-UDM (User Defined Model) は、PHITSに新しい相互作用と粒子を組み込める拡張機能です。**
 
 * [:ref:`PHITS-UDMのダウンロード<sec_download>`]
 
