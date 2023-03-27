@@ -1,0 +1,463 @@
+           _________________________________________________________
+          |                                                         |
+          |       _/_/_/_/                                          |
+          |      _/      _/                  _/_/_/_/_/_/           |
+          |     _/      _/  _/      _/   _/      _/      _/_/_/_/_/ |
+          |    _/_/_/_/    _/      _/   _/      _/      _/          |
+          |   _/          _/_/_/_/_/   _/      _/       _/_/_/_/    |
+          |  _/          _/      _/   _/      _/              _/    |
+          | _/          _/      _/   _/      _/      _/_/_/_/_/     |
+          |                                                         |
+          |                                                         |
+          |       Particle and Heavy Ion Transport code System      |
+          |                      Version =  3.290                   |
+          |                       developed by                      |
+          |                                                         |
+          |  Tatsuhiko SATO, Yosuke IWAMOTO, Shintaro HASHIMOTO,    |
+          |    Tatsuhiko OGAWA, Takuya FURUTA, Shinichiro ABE,      |
+          |    Takeshi KAI, Norihiro MATSUDA, Yusuke MATSUYA,       |
+          | Yuho HIRATA, Lan YAO, Pi-En TSAI, Hunter RATLIFF (JAEA),|
+          |                                                         |
+          |            Hiroshi IWASE, Yasuhito SAKAKI (KEK),        |
+          |                                                         |
+          |           Nobuhiro SHIGYO (Kyushu University),          |
+          |                                                         |
+          |      Lembit SIHVER (Technische Universitat Wien), and   |
+          |                                                         |
+          |                     Koji NIITA (RIST)                   |
+          |                                                         |
+          |                 Last Revised  2022-09-07                |
+          |_________________________________________________________|
+
+                        Starting Date = 2023-01-09
+                        Starting Time = 11h 38m 27
+
+>>> Input Echo >>>=============================================================
+
+[ Parameters ]
+ icntl    =           0     # (D=0) 3:ECH 5:NOR 6:SRC 7,8:GSH 11:DSH 12:DUMP
+ maxcas   =        1000     # (D=10) number of particles per one batch
+ maxbch   =           1     # (D=10) number of batches
+ negs     =           1     # (D=-1) =-1:original, =0:No, =1:EGS
+ iudmodel =           1     # 
+
+[ Source ]
+  totfact =   1.0000        # (D=1.0) global factor
+   s-type =   1             # cylindrical source
+     proj =  electron       # kind of incident particle         
+       e0 =   1000.0        # energy of beam [MeV/n]
+       r0 =   0.0000        # radius [cm]
+       x0 =   0.0000        # (D=0.0) center position of x-axis [cm]
+       y0 =   0.0000        # (D=0.0) center position of y-axis [cm]
+       z0 =  -10.000        # minimum position of z-axis [cm]
+       z1 =  -10.000        # maximum position of z-axis [cm]
+      dir =   1.0000        # z-direction of beam [cosine]
+
+[ Material ]
+MAT[ 1 ] 
+            H         2.0000000E+00
+            O         1.0000000E+00
+
+[ Cell ]
+ 1           1 -1.0000000E+00  -1 
+ 98          0                 -99 #1 
+ 99         -1                 99 
+
+[ Surface ]
+ 1             rpp  -1.0000000E+00  1.0000000E+00 -1.0000000E+00
+                     1.0000000E+00  0.0000000E+00  1.0000000E+01
+ 99            so    1.0000000E+03
+
+[ T-Track ]
+    title = [t-track] in xyz mesh
+     mesh =  xyz            # mesh type is xyz scoring mesh
+   x-type =    2            # x-mesh is linear given by xmin, xmax and nx
+     xmin =  -5.000000      # minimum value of x-mesh points
+     xmax =   5.000000      # maximum value of x-mesh points
+#    xdel =  6.7114094E-02  # mesh width of x-mesh points
+       nx =    149          # number of x-mesh points
+#    data = ( x(i), i = 1, nx + 1 )
+#          -5.00000E+00 -4.93289E+00 -4.86577E+00 -4.79866E+00 -4.73154E+00
+#          -4.66443E+00 -4.59732E+00 -4.53020E+00 -4.46309E+00 -4.39597E+00
+#          -4.32886E+00 -4.26174E+00 -4.19463E+00 -4.12752E+00 -4.06040E+00
+#          -3.99329E+00 -3.92617E+00 -3.85906E+00 -3.79195E+00 -3.72483E+00
+#          -3.65772E+00 -3.59060E+00 -3.52349E+00 -3.45638E+00 -3.38926E+00
+#          -3.32215E+00 -3.25503E+00 -3.18792E+00 -3.12081E+00 -3.05369E+00
+#          -2.98658E+00 -2.91946E+00 -2.85235E+00 -2.78523E+00 -2.71812E+00
+#          -2.65101E+00 -2.58389E+00 -2.51678E+00 -2.44966E+00 -2.38255E+00
+#          -2.31544E+00 -2.24832E+00 -2.18121E+00 -2.11409E+00 -2.04698E+00
+#          -1.97987E+00 -1.91275E+00 -1.84564E+00 -1.77852E+00 -1.71141E+00
+#          -1.64430E+00 -1.57718E+00 -1.51007E+00 -1.44295E+00 -1.37584E+00
+#          -1.30872E+00 -1.24161E+00 -1.17450E+00 -1.10738E+00 -1.04027E+00
+#          -9.73154E-01 -9.06040E-01 -8.38926E-01 -7.71812E-01 -7.04698E-01
+#          -6.37584E-01 -5.70470E-01 -5.03356E-01 -4.36242E-01 -3.69128E-01
+#          -3.02013E-01 -2.34899E-01 -1.67785E-01 -1.00671E-01 -3.35570E-02
+#           3.35570E-02  1.00671E-01  1.67785E-01  2.34899E-01  3.02013E-01
+#           3.69128E-01  4.36242E-01  5.03356E-01  5.70470E-01  6.37584E-01
+#           7.04698E-01  7.71812E-01  8.38926E-01  9.06040E-01  9.73154E-01
+#           1.04027E+00  1.10738E+00  1.17450E+00  1.24161E+00  1.30872E+00
+#           1.37584E+00  1.44295E+00  1.51007E+00  1.57718E+00  1.64430E+00
+#           1.71141E+00  1.77852E+00  1.84564E+00  1.91275E+00  1.97987E+00
+#           2.04698E+00  2.11409E+00  2.18121E+00  2.24832E+00  2.31544E+00
+#           2.38255E+00  2.44966E+00  2.51678E+00  2.58389E+00  2.65101E+00
+#           2.71812E+00  2.78523E+00  2.85235E+00  2.91946E+00  2.98658E+00
+#           3.05369E+00  3.12081E+00  3.18792E+00  3.25503E+00  3.32215E+00
+#           3.38926E+00  3.45638E+00  3.52349E+00  3.59060E+00  3.65772E+00
+#           3.72483E+00  3.79195E+00  3.85906E+00  3.92617E+00  3.99329E+00
+#           4.06040E+00  4.12752E+00  4.19463E+00  4.26174E+00  4.32886E+00
+#           4.39597E+00  4.46309E+00  4.53020E+00  4.59732E+00  4.66443E+00
+#           4.73154E+00  4.79866E+00  4.86577E+00  4.93289E+00  5.00000E+00
+   y-type =    2            # y-mesh is linear given by ymin, ymax and ny
+     ymin =  -5.000000      # minimum value of y-mesh points
+     ymax =   5.000000      # maximum value of y-mesh points
+#    ydel =   10.00000      # mesh width of y-mesh points
+       ny =      1          # number of y-mesh points
+#    data = ( y(i), i = 1, ny + 1 )
+#          -5.00000E+00  5.00000E+00
+   z-type =    2            # z-mesh is linear given by zmin, zmax and nz
+     zmin =  -2.000000      # minimum value of z-mesh points
+     zmax =   30.00000      # maximum value of z-mesh points
+#    zdel =  0.1600000      # mesh width of z-mesh points
+       nz =    200          # number of z-mesh points
+#    data = ( z(i), i = 1, nz + 1 )
+#          -2.00000E+00 -1.84000E+00 -1.68000E+00 -1.52000E+00 -1.36000E+00
+#          -1.20000E+00 -1.04000E+00 -8.80000E-01 -7.20000E-01 -5.60000E-01
+#          -4.00000E-01 -2.40000E-01 -8.00000E-02  8.00000E-02  2.40000E-01
+#           4.00000E-01  5.60000E-01  7.20000E-01  8.80000E-01  1.04000E+00
+#           1.20000E+00  1.36000E+00  1.52000E+00  1.68000E+00  1.84000E+00
+#           2.00000E+00  2.16000E+00  2.32000E+00  2.48000E+00  2.64000E+00
+#           2.80000E+00  2.96000E+00  3.12000E+00  3.28000E+00  3.44000E+00
+#           3.60000E+00  3.76000E+00  3.92000E+00  4.08000E+00  4.24000E+00
+#           4.40000E+00  4.56000E+00  4.72000E+00  4.88000E+00  5.04000E+00
+#           5.20000E+00  5.36000E+00  5.52000E+00  5.68000E+00  5.84000E+00
+#           6.00000E+00  6.16000E+00  6.32000E+00  6.48000E+00  6.64000E+00
+#           6.80000E+00  6.96000E+00  7.12000E+00  7.28000E+00  7.44000E+00
+#           7.60000E+00  7.76000E+00  7.92000E+00  8.08000E+00  8.24000E+00
+#           8.40000E+00  8.56000E+00  8.72000E+00  8.88000E+00  9.04000E+00
+#           9.20000E+00  9.36000E+00  9.52000E+00  9.68000E+00  9.84000E+00
+#           1.00000E+01  1.01600E+01  1.03200E+01  1.04800E+01  1.06400E+01
+#           1.08000E+01  1.09600E+01  1.11200E+01  1.12800E+01  1.14400E+01
+#           1.16000E+01  1.17600E+01  1.19200E+01  1.20800E+01  1.22400E+01
+#           1.24000E+01  1.25600E+01  1.27200E+01  1.28800E+01  1.30400E+01
+#           1.32000E+01  1.33600E+01  1.35200E+01  1.36800E+01  1.38400E+01
+#           1.40000E+01  1.41600E+01  1.43200E+01  1.44800E+01  1.46400E+01
+#           1.48000E+01  1.49600E+01  1.51200E+01  1.52800E+01  1.54400E+01
+#           1.56000E+01  1.57600E+01  1.59200E+01  1.60800E+01  1.62400E+01
+#           1.64000E+01  1.65600E+01  1.67200E+01  1.68800E+01  1.70400E+01
+#           1.72000E+01  1.73600E+01  1.75200E+01  1.76800E+01  1.78400E+01
+#           1.80000E+01  1.81600E+01  1.83200E+01  1.84800E+01  1.86400E+01
+#           1.88000E+01  1.89600E+01  1.91200E+01  1.92800E+01  1.94400E+01
+#           1.96000E+01  1.97600E+01  1.99200E+01  2.00800E+01  2.02400E+01
+#           2.04000E+01  2.05600E+01  2.07200E+01  2.08800E+01  2.10400E+01
+#           2.12000E+01  2.13600E+01  2.15200E+01  2.16800E+01  2.18400E+01
+#           2.20000E+01  2.21600E+01  2.23200E+01  2.24800E+01  2.26400E+01
+#           2.28000E+01  2.29600E+01  2.31200E+01  2.32800E+01  2.34400E+01
+#           2.36000E+01  2.37600E+01  2.39200E+01  2.40800E+01  2.42400E+01
+#           2.44000E+01  2.45600E+01  2.47200E+01  2.48800E+01  2.50400E+01
+#           2.52000E+01  2.53600E+01  2.55200E+01  2.56800E+01  2.58400E+01
+#           2.60000E+01  2.61600E+01  2.63200E+01  2.64800E+01  2.66400E+01
+#           2.68000E+01  2.69600E+01  2.71200E+01  2.72800E+01  2.74400E+01
+#           2.76000E+01  2.77600E+01  2.79200E+01  2.80800E+01  2.82400E+01
+#           2.84000E+01  2.85600E+01  2.87200E+01  2.88800E+01  2.90400E+01
+#           2.92000E+01  2.93600E+01  2.95200E+01  2.96800E+01  2.98400E+01
+#           3.00000E+01
+   e-type =    2            # e-mesh is linear given by emin, emax and ne
+     emin =   0.000000      # minimum value of e-mesh points
+     emax =   1001.000      # maximum value of e-mesh points
+#    edel =   1001.000      # mesh width of e-mesh points
+       ne =      1          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+#           0.00000E+00  1.00100E+03
+     unit =    1            # unit is [1/cm^2/source]
+ material =  all            # (D=all) number of specific material
+  2D-type =    3            # 1:Cont, 2:Clust, 3:Color, 4:xyz, 5:mat, 6:Clust+Cont, 7:Col+Cont
+     axis =      xz            # axis of output
+     file = 1_flux_xz.out   # file name of output for the above axis
+     part =  electron   positron   photon     900000     12       
+# kf/name :  11         -11        22         900000     nu_e     
+    gshow =    1            # 0: no 1:bnd, 2:bnd+mat, 3:bnd+reg 4:bnd+lat 5:bmp style
+    resol =    1            # (D=1) resolution of gshow or rshow
+    width = 0.5000000       # (D=0.5) width of lines for gshow or rshow
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         359 (  0)           0 (  0)         359 (  0)
+
+[ T-Product ]
+    title = [t-product] in region mesh
+     mesh =  reg            # mesh type is region-wise
+      reg = 1
+   e-type =    2            # e-mesh is linear given by emin, emax and ne
+     emin =   0.000000      # minimum value of e-mesh points
+     emax =   1001.000      # maximum value of e-mesh points
+#    edel =   10.01000      # mesh width of e-mesh points
+       ne =    100          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+#           0.00000E+00  1.00100E+01  2.00200E+01  3.00300E+01  4.00400E+01
+#           5.00500E+01  6.00600E+01  7.00700E+01  8.00800E+01  9.00900E+01
+#           1.00100E+02  1.10110E+02  1.20120E+02  1.30130E+02  1.40140E+02
+#           1.50150E+02  1.60160E+02  1.70170E+02  1.80180E+02  1.90190E+02
+#           2.00200E+02  2.10210E+02  2.20220E+02  2.30230E+02  2.40240E+02
+#           2.50250E+02  2.60260E+02  2.70270E+02  2.80280E+02  2.90290E+02
+#           3.00300E+02  3.10310E+02  3.20320E+02  3.30330E+02  3.40340E+02
+#           3.50350E+02  3.60360E+02  3.70370E+02  3.80380E+02  3.90390E+02
+#           4.00400E+02  4.10410E+02  4.20420E+02  4.30430E+02  4.40440E+02
+#           4.50450E+02  4.60460E+02  4.70470E+02  4.80480E+02  4.90490E+02
+#           5.00500E+02  5.10510E+02  5.20520E+02  5.30530E+02  5.40540E+02
+#           5.50550E+02  5.60560E+02  5.70570E+02  5.80580E+02  5.90590E+02
+#           6.00600E+02  6.10610E+02  6.20620E+02  6.30630E+02  6.40640E+02
+#           6.50650E+02  6.60660E+02  6.70670E+02  6.80680E+02  6.90690E+02
+#           7.00700E+02  7.10710E+02  7.20720E+02  7.30730E+02  7.40740E+02
+#           7.50750E+02  7.60760E+02  7.70770E+02  7.80780E+02  7.90790E+02
+#           8.00800E+02  8.10810E+02  8.20820E+02  8.30830E+02  8.40840E+02
+#           8.50850E+02  8.60860E+02  8.70870E+02  8.80880E+02  8.90890E+02
+#           9.00900E+02  9.10910E+02  9.20920E+02  9.30930E+02  9.40940E+02
+#           9.50950E+02  9.60960E+02  9.70970E+02  9.80980E+02  9.90990E+02
+#           1.00100E+03
+ material =  all            # (D=all) number of specific material
+   mother =  all            # (D=all) number of specific mother
+     unit =    1            # unit is [1/source]
+     axis =  eng            # axis of output
+     file = 2_production_energy.out  # file name of output for the above axis
+   output = nuclear         # (D=nuclear) products from all reactions
+     part =  900000     electron 
+# kf/name :  900000     11       
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         107 (  0)           0 (  0)         107 (  0)
+
+[ T-Product ]
+    title = [t-product] in region mesh
+     mesh =  reg            # mesh type is region-wise
+      reg = 1
+   e-type =    2            # e-mesh is linear given by emin, emax and ne
+     emin =   0.000000      # minimum value of e-mesh points
+     emax =   1001.000      # maximum value of e-mesh points
+#    edel =   10.01000      # mesh width of e-mesh points
+       ne =    100          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+#           0.00000E+00  1.00100E+01  2.00200E+01  3.00300E+01  4.00400E+01
+#           5.00500E+01  6.00600E+01  7.00700E+01  8.00800E+01  9.00900E+01
+#           1.00100E+02  1.10110E+02  1.20120E+02  1.30130E+02  1.40140E+02
+#           1.50150E+02  1.60160E+02  1.70170E+02  1.80180E+02  1.90190E+02
+#           2.00200E+02  2.10210E+02  2.20220E+02  2.30230E+02  2.40240E+02
+#           2.50250E+02  2.60260E+02  2.70270E+02  2.80280E+02  2.90290E+02
+#           3.00300E+02  3.10310E+02  3.20320E+02  3.30330E+02  3.40340E+02
+#           3.50350E+02  3.60360E+02  3.70370E+02  3.80380E+02  3.90390E+02
+#           4.00400E+02  4.10410E+02  4.20420E+02  4.30430E+02  4.40440E+02
+#           4.50450E+02  4.60460E+02  4.70470E+02  4.80480E+02  4.90490E+02
+#           5.00500E+02  5.10510E+02  5.20520E+02  5.30530E+02  5.40540E+02
+#           5.50550E+02  5.60560E+02  5.70570E+02  5.80580E+02  5.90590E+02
+#           6.00600E+02  6.10610E+02  6.20620E+02  6.30630E+02  6.40640E+02
+#           6.50650E+02  6.60660E+02  6.70670E+02  6.80680E+02  6.90690E+02
+#           7.00700E+02  7.10710E+02  7.20720E+02  7.30730E+02  7.40740E+02
+#           7.50750E+02  7.60760E+02  7.70770E+02  7.80780E+02  7.90790E+02
+#           8.00800E+02  8.10810E+02  8.20820E+02  8.30830E+02  8.40840E+02
+#           8.50850E+02  8.60860E+02  8.70870E+02  8.80880E+02  8.90890E+02
+#           9.00900E+02  9.10910E+02  9.20920E+02  9.30930E+02  9.40940E+02
+#           9.50950E+02  9.60960E+02  9.70970E+02  9.80980E+02  9.90990E+02
+#           1.00100E+03
+ material =  all            # (D=all) number of specific material
+   mother =  all            # (D=all) number of specific mother
+     unit =    1            # unit is [1/source]
+     axis =  eng            # axis of output
+     file = 3_decay_energy.out  # file name of output for the above axis
+   output = decay           # (D=nuclear) products from decay
+     part =  12       
+# kf/name :  nu_e     
+   epsout =    1            # (D=0) generate eps file by ANGEL
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :         107 (  0)           0 (  0)         107 (  0)
+
+[END] of Input Echo <<<========================================================
+
+<<< Report of real Geometry memory >>>
+*           GG/CG memory =      239
+*     total memory: mdas = 80000000
+*                percent =     0.00 %
+
+<<< Report of material memory for high energy>>>
+*   high energy material =      198
+*     total memory: mdas = 80000000
+*                percent =     0.00 %
+
+<<< Report of material memory for low energy>>>
+*    low energy material =      877
+*     total memory: mdas = 80000000
+*                percent =     0.00 %
+
+<<< Report of real tally memory >>>
+*      real tally memory =      573
+*     total memory: mdas = 80000000
+*                percent =     0.00 %
+
+<<< Report of bank memory >>>
+*            bank memory =     2173
+*     total memory: mdas = 80000000
+*                percent =     0.00 %
+
+<<< Report of other memory >>>
+*           other memory =      941
+*     total memory: mdas = 80000000
+*                percent =     0.00 %
+
+<<< Report of total memory >>>
+*      used total memory =     5001
+*     total memory: mdas = 80000000
+*                percent =     0.01 %
+*                ---------------------
+
+-------------------------------------------------------------------------------
+bat[       1] ncas =           1000.
+ bitrseed = 0100001010011000001011101100011110011000110110100110010000000000
+          cpu time =   2.781 s.
+
+===============================================================================
+
+ Summary for the end of job
+
+-------------------------------------------------------------------------------
+ number of analyz call vs ncol
+-------------------------------------------------------------------------------
+     ncol          number
+        1              1.   : start of calculation            
+        2              1.   : end of calculation              
+        3              1.   : end of a batch                  
+        4           1000.   : source                          
+        5              0.   : detection of geometry error/warn
+        6              0.   : recovery from geometry warning  
+        7              0.   : termination by geometry error   
+        8              0.   : termination by weight cut-off   
+        9              0.   : termination by time cut-off     
+       10           6419.   : geometry boundary crossing      
+       11          10211.   : termination by energy cut-off   
+       12           5421.   : termination by escape or leakage
+       13           1609.   : reaction : (n,x) type           
+       14         723066.   : reaction : (n,n'x) type         
+       15              0.   : sequential transport for tally  
+
+-------------------------------------------------------------------------------
+ List of transport particles
+-------------------------------------------------------------------------------
+     Name      kf-code        mass       charge   baryon
+     positron      -11          0.5         1       0
+     photon         22          0.0         0       0
+
+     nu_e           12          0.0         0       0
+
+-------------------------------------------------------------------------------
+ prod. particles       number        weight        weight per source
+-------------------------------------------------------------------------------
+     photon               30.     3.0000000E+01     3.0000000E-02
+     positron             15.     1.5000000E+01     1.5000000E-02
+     other                 6.     6.0000973E-03     6.0000973E-06
+
+-------------------------------------------------------------------------------
+ the other kind of produced particles
+-------------------------------------------------------------------------------
+     Name      kf-code        number     mass       charge   baryon
+     nu_e           12             6       0.0         0       0
+     900000     900000             2      50.0         0       0
+
+-------------------------------------------------------------------------------
+ particle decays       number        weight        weight per source
+-------------------------------------------------------------------------------
+     positron             15.     1.5000000E+01     1.5000000E-02
+
+-------------------------------------------------------------------------------
+ stop. particles.    number        weight        weight per source
+-------------------------------------------------------------------------------
+     electron          14333.     1.4327006E+04     1.4327006E+01
+     positron             15.     1.5000000E+01     1.5000000E-02
+     photon                6.     6.0000000E+00     6.0000000E-03
+
+-------------------------------------------------------------------------------
+ leak. particles       number        weight        weight per source
+-------------------------------------------------------------------------------
+     photon             3962.     3.9590030E+03     3.9590030E+00
+     electron           1373.     1.3710020E+03     1.3710020E+00
+     positron             80.     8.0000000E+01     8.0000000E-02
+     other                 6.     6.0000973E-03     6.0000973E-06
+
+-------------------------------------------------------------------------------
+ the other kind of leakage particles
+-------------------------------------------------------------------------------
+     Name      kf-code        number     mass       charge   baryon
+     nu_e           12             6       0.0         0       0
+
+-------------------------------------------------------------------------------
+ source: maxcas    maxbch      irskip   average weight          total source
+-------------------------------------------------------------------------------
+        1000           1           0    1.0000000E+00    1.0000000000000E+03
+
+-------------------------------------------------------------------------------
+ Geometry error summary
+-------------------------------------------------------------------------------
+ Number of lost particles     =     0 / nlost =       10
+ Number of geometry recovering =     0
+ Number of unrecovered errors =     0
+
+-------------------------------------------------------------------------------
+ initial random seed:
+   bitrseed = 0100001010011000001011101100011110011000110110100110010000000000
+ next initial random seed:
+   bitrseed = 0101000011000111010110101100111000100101101011010111101101011101
+
+-------------------------------------------------------------------------------
+ job termination date : 2023/01/09
+                 time :   11:38:32
+
+-------------------------------------------------------------------------------
+    CPU time and number of event called in PHITS
+-------------------------------------------------------------------------------
+
+                             sec
+total cpu time =            4.53
+
+
+                           count
+      analysis =         747727.  : data processing
+         nevap =              0.  : evaporation
+        dexgam =              0.  : de-excitation
+         nreac =         724675.  : atomic and nuclear reactions
+         dklos =             17.  : particle decay
+         hydro =              0.  : nucleon-nucleon scattering
+        n-data =              0.  : neutron data library
+        h-data =              0.  : p, d, a data library
+        p-data =              0.  : photon data library
+        e-data =              0.  : electron data library
+        p-egs5 =           2725.  : photon interaction with EGS5
+        e-egs5 =         721931.  : electron interaction with EGS5
+      e-tsmode =              0.  : electron track structure mode
+    ion-tsmode =              0.  : ion track structure mode
+     photonucl =              0.  : photo-nuclear reaction
+ photonucl lib =              0.  : photo-nuclear reaction with library
+       mu-reac =              0.  : muon-induced nuclear reaction
+       mu-brem =              0.  : muon-induced bremsstrahlung
+       mu-pprd =              0.  : muon-induced pair production
+        mu-cap =              0.  : muon capture in nucleus
+         elast =              0.  : elastic scattering
+         ncasc =              0.  : nuclear reaction model
+
+       bertini =              0.  : Bertini model
+        isobar =              0.  : isobar model
+           JAM =              0.  : JAM model
+           QMD =              0.  : JQMD model
+        JAMQMD =              0.  : JAMQMD model
+          INCL =              0.  : INCL model
+        INCELF =              0.  : INCELF model
+     frag data =              0.  : user defined cross section
+       SCINFUL =              0.  : SCINFUL mode
+
+>>> Citation Request >>>=======================================================
+
+ This execution uses model(s) that must be explicitly cited in addition to
+ the PHITS original document: T.Sato et al., J.Nucl.Sci.Technol.55, 684-690 (2018).
+ Please refer the following document(s) in your publication using this result
+
+ The EGS5 code:
+    H. Hirayama et al., SLAC-R-730 (2005) and KEK Report 2005-8 (2005)
+
+ The KUROTAMA model:
+    K. Iida, A. Kohama, and K. Oyamatsu, J. Phys. Soc. Japan 76, 044201 (2007).
+
+ END 

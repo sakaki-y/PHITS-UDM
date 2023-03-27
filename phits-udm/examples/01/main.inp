@@ -1,0 +1,130 @@
+$====================================================
+[ parameters ]
+  icntl  = 0      $ 0: Normal calculation (See manual)
+  maxcas = 1000   $ Injection number per batch
+  maxbch = 1      $ Natch number
+
+  negs = 1        $ Electromagnetic shower. 1:Low energy mode. 2:High energu mode.
+
+  iudmodel = 1    $ User defined model. 0:Off (default). 1:On
+
+
+$====================================================
+[ user defined interaction ]
+  n_int = 1
+
+$ Name               Bias    Parameters
+  my_interaction_1   1.0e+3  900000
+
+
+$====================================================
+[ user defined particle ]
+  n_part = 1
+
+$ Name           kfcode   Parameters
+  my_particle_1  900000
+
+
+$====================================================
+[ source ]
+   s-type =  1          $ mono-energetic axial source
+     proj =  electron
+       z0 = -10
+       z1 = -10
+       e0 =  1000
+
+
+$====================================================
+[ surface ]
+
+$         xmin xmax  ymin ymax  zmin zmax
+ 1  rpp     -1    1    -1    1     0   10
+
+ 99  so   1000
+
+
+$====================================================
+[ material ]
+ mat[1] H 2  O 1   $ Water
+
+
+$====================================================
+[ cell ]
+ 1      1  -1.0  -1
+ 98     0        -99 #1
+ 99    -1         99
+
+
+$====================================================
+[ t-track ]
+   file = 1_flux_xz.out
+   part = electron positron photon 900000 12
+
+   mesh = xyz
+
+ x-type =  2
+     nx =  149
+   xmin = -5
+   xmax =  5
+
+ y-type =  2
+     ny =  1
+   ymin = -5
+   ymax =  5
+
+ z-type =  2
+     nz =  200
+   zmin = -2
+   zmax =  30
+
+ e-type =  2
+     ne =  1
+   emin =  0
+   emax =  1001
+
+   unit = 1         $ 1: [1/cm^2/source]
+   axis = xz
+  gshow = 1
+ epsout = 1
+
+
+
+
+$====================================================
+[ t-product ]
+   file = 2_production_energy.out
+   part = 900000 electron
+
+   mesh = reg
+   reg  = 1         $ cell ID
+
+ e-type = 2
+     ne = 100
+   emin = 0
+   emax = 1001
+
+   unit = 1         $ unit is [1/source]
+   axis = eng       $ axis of output(eng = energy)
+ epsout = 1
+
+
+
+$====================================================
+[ t-product ]
+   file = 3_decay_energy.out
+   part = 12
+ output = decay
+
+   mesh = reg
+   reg  = 1         $ cell ID
+
+ e-type = 2
+     ne = 100
+   emin = 0
+   emax = 1001
+
+   unit = 1         $ unit is [1/source]
+   axis = eng       $ axis of output(eng = energy)
+ epsout = 1
+
+
