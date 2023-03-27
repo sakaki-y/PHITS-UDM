@@ -71,7 +71,7 @@ PHITS に既存の粒子の崩壊パターンの追加や、寿命の変更も�
    :caption: Examples
    :hidden:
 
-   /tree_user_code/user_codes
+   /tree_user_codes/user_codes
 
 .. toctree::
    :caption: その他

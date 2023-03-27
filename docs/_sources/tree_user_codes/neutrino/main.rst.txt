@@ -1,0 +1,52 @@
+:orphan:
+
+
+Download
+########################################
+
+https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/neutrino
+
+|
+
+Descriptions
+########################################
+
+neutrino相互作用を計算する。
+
+100 GeV < E < 1000 GeV
+
+GENIE を利用している。
+
+対応 kf-code = 12, -14。
+
+|
+
+Name / Parameters
+########################################
+
+**[ user defined interaction ]**
+
+.. list-table ::
+
+   * - Name
+     - Parameters
+   * - neutrino
+     - (no parameters)
+
+|
+
+References
+########################################
+
+http://genie-mc.org/
+
+|
+
+Contact
+########################################
+
+
+
+
+
+

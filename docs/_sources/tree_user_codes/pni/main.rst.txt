@@ -1,0 +1,51 @@
+:orphan:
+
+
+Download
+########################################
+
+https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/pni
+
+|
+
+Descriptions
+########################################
+
+PHITSの光核反応 (:math:`200 MeV < E_{\gamma} < 8229 MeV, Z \ge 26`) を高速化する。
+
+200 MeV 以下は核データを利用することでさらに高速化できる。
+
+終状態同士の相関はない。
+
+
+
+|
+
+Name / Parameters
+########################################
+
+**[ user defined interaction ]**
+
+.. list-table ::
+
+   * - Name
+     - Parameters
+   * - pni
+     - (no parameters)
+
+|
+
+References
+########################################
+
+
+|
+
+Contact
+########################################
+
+
+
+
+
+

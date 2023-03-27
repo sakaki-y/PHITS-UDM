@@ -1,0 +1,45 @@
+:orphan:
+
+
+Download
+########################################
+
+https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/muon-decay
+
+|
+
+Descriptions
+########################################
+
+muon を強制的に崩壊させる。
+
+|
+
+Name / Parameters
+########################################
+
+**[ user defined particle ]**
+
+.. list-table ::
+
+   * - Name
+     - Parameters
+   * - MuonPlus
+     - (no parameters)
+
+|
+
+References
+########################################
+
+
+|
+
+Contact
+########################################
+
+
+
+
+
+

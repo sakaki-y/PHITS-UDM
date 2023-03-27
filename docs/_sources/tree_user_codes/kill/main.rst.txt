@@ -1,0 +1,70 @@
+:orphan:
+
+
+Download
+########################################
+
+https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/kill
+
+|
+
+Descriptions
+########################################
+
+ある粒子を指定したcell-IDにおいて、運動エネルギー E が以下の場合、輸送を止める（killする）。
+
+:math:`E<E_{\rm min}` and :math:`E_{\rm max}<E`
+
+|
+
+Name / Parameters
+########################################
+
+**[ user defined particle ]**
+
+.. list-table ::
+
+   * - Name
+     - kf-code
+     - Parameters
+   * - kill
+     - P0
+     - P1 P2 P3 P4 ...
+
+| P0 = セットしたい条件の数
+| P1 = killしたい粒子のkf-code
+| P2 = killしたい粒子のcell-ID
+| P3 = :math:`E_{\rm min}` [MeV]
+| P4 = :math:`E_{\rm max}` [MeV]
+| ...（P0>1の場合は、上の4変数を繰り返し書く）
+
+ただし、P0=0 の場合、インプットファイルが存在しているフォルダに、kill.inp というテキストファイルを用意し、
+4変数を繰り返し書くことでもkillできる。ただし、4変数以外の情報が書かれている行はスキップされる。
+
+.. code-block::
+  :caption: kill.inp
+
+  $ kf cell Emin Emax
+
+    11 13 7 -1
+   -11 13 7 -1
+    22 13 7 -1
+
+
+|
+
+References
+########################################
+
+
+
+|
+
+Contact
+########################################
+
+
+
+
+
+
