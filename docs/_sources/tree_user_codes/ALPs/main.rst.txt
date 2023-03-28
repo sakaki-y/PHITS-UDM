@@ -11,7 +11,7 @@ https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/ALPs
 Descriptions
 ########################################
 
-以下のラグランジアンで記述されるALPsのPrimakoff過程に伴う生成と光子対への崩壊を扱う。
+以下のラグランジアンで記述されるALPs (Axion-like particles) の Primakoff 過程に伴う生成と光子対への崩壊を扱う。
 
 :math:`\delta\mathcal{L}=
 -\frac{1}{4} g_{a\gamma\gamma} a F_{\mu\nu} F^{\mu\nu}

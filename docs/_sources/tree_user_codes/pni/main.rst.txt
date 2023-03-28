@@ -11,7 +11,7 @@ https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/pni
 Descriptions
 ########################################
 
-PHITSの光核反応 (:math:`200 MeV < E_{\gamma} < 8229 MeV, Z \ge 26`) を高速化する。
+PHITSの光核反応 (:math:`200 {\rm MeV} < E_{\gamma} < 8229 {\rm MeV}, Z \ge 26`) を高速化する。
 
 200 MeV 以下は核データを利用することでさらに高速化できる。
 
