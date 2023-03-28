@@ -4,14 +4,16 @@
 Download
 ########################################
 
-https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/K0_prod
+https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/ee2mumu
 
 |
 
 Descriptions
 ########################################
 
-前方領域における光 :math:`K^0` 生成の過小評価を実験値に基づき修正した。
+陽電子（:math:`E_{e^+}>43.7` GeV） と 原子内電子との対消滅に伴うミューオン対生成プロセス。
+
+:math:`e^+e^-_{\rm atomic} \to \mu^+\mu^-`
 
 |
 
@@ -25,7 +27,7 @@ Name / Parameters
    * - Name
      - Bias
      - Parameters
-   * - K0_prod
+   * - ALPs
      - (Bias value)
      - (No parameters)
 
@@ -34,7 +36,6 @@ Name / Parameters
 References
 ########################################
 
-https://inspirehep.net/literature/1883861
 
 |
 

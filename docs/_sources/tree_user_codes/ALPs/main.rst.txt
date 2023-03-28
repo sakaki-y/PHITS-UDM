@@ -34,8 +34,10 @@ Name / Parameters
 .. list-table ::
 
    * - Name
+     - Bias
      - Parameters
    * - ALPs
+     - (Bias value)
      - P1 P2
 
 | P1 = Primakoff 過程で生成される ALPs の kf-code (P-ID)
@@ -46,8 +48,10 @@ Name / Parameters
 .. list-table ::
 
    * - Name
+     - kf-code
      - Parameters
    * - ALPs
+     - (kf-code)
      - P1 P2
 
 | P1 = :math:`m_a` [MeV]

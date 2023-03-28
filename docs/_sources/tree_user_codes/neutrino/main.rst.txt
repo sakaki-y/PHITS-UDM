@@ -29,9 +29,11 @@ Name / Parameters
 .. list-table ::
 
    * - Name
+     - Bias
      - Parameters
    * - neutrino
-     - (no parameters)
+     - (Bias value)
+     - (No parameters)
 
 |
 

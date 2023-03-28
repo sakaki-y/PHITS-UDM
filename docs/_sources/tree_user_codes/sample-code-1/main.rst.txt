@@ -25,10 +25,13 @@ Name / Parameters
 .. list-table ::
 
    * - Name
+     - Bias
      - Parameters
    * - my_interaction_1
+     - (Bias value)
      - <P1>
    * - my_interaction_2
+     - (Bias value)
      - <P1>
 
 <P1> = 放出される新粒子の kf-code
@@ -38,10 +41,13 @@ Name / Parameters
 .. list-table ::
 
    * - Name
+     - kf-code
      - Parameters
    * - my_particle_1
-     - 
+     - (kf-code)
+     - (No parameters)
    * - my_particle_2
+     - (kf-code)
      - <mass [MeV]>   <lifetime [second]>
 
 |

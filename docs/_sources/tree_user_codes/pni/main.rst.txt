@@ -29,9 +29,11 @@ Name / Parameters
 .. list-table ::
 
    * - Name
+     - Bias
      - Parameters
    * - pni
-     - (no parameters)
+     - (自動で pnimul と同じ値に自動設定)
+     - (No parameters)
 
 |
 
