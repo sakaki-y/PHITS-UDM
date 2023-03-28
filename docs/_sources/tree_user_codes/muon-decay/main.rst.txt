@@ -23,8 +23,10 @@ Name / Parameters
 .. list-table ::
 
    * - Name
+     - kf-code
      - Parameters
    * - MuonPlus
+     - -13
      - (no parameters)
 
 |
