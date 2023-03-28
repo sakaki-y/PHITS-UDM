@@ -4,22 +4,31 @@
 ダウンロード
 ########################################
 
-| :download:`phits-udm-20230120.zip` (最新)
-| :download:`phits-udm-20230109.zip`
+:download:`phits-udm-20230328.zip` (Latest)
+
+:doc:`(Older Versions)<old_version>`
 
 ダウンロード後、[:ref:`sec_1`] を参照して PHITS-UDM の実行ファイルを作成して下さい。
 
-|
 
 **（ソフトウェア要件）**
 
-* PHITS 3.29 以上
+* PHITS 3.30 以上
+
+    * 最新版PHITSの取得
+
+    * https://phits.jaea.go.jp/contact/
+
+    * カテゴリー > 新バージョンの請求
 
 * Fortran コンパイラ（Intel Fortran や gfortran など）
 
-* Python3 または Python2
+    * `Intel Fortran のインストール方法 <https://phits.jaea.go.jp/image/Install-IntelFortran-OneAPI-en.pdf>`_
 
-    * Python は、オリジナルのソースファイルのコピーと変換を行うためだけに使用される。変換された 10 ファイルを直接配布することで Python の使用は原理的にはスキップできる。
+
+* Python3
+
+    * Python は、オリジナルのソースファイルのコピーと変換を行うためだけに使用される。変換されたソースファイルを直接配布することで Python の使用は原理的にはスキップできる。
 
 
 

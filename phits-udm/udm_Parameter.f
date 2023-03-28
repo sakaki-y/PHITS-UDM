@@ -15,20 +15,21 @@
       integer         , save :: udm_integer
       integer         , save :: udm_counter_dklos
       character(200)  , save :: udm_phits_path
+      integer         , save :: udm_cell
 
 C     From [ User defined interaction ]
       integer, save :: udm_int_nMax
       character(len=99), allocatable,save:: udm_int_name(:)
       double precision, allocatable,save:: udm_bias(:)
       double precision, allocatable,save:: udm_int_param(:,:)
-      integer, parameter :: udm_int_param_nMax = 30
+      integer, parameter :: udm_int_param_nMax = 40
 
 C     From [ User defined particle ]
       integer, save :: udm_part_nMax
       character(len=99), allocatable,save:: udm_part_name(:)
       integer, allocatable,save:: udm_part_kf(:)
       double precision, allocatable,save:: udm_part_param(:,:)
-      integer, parameter :: udm_part_param_nMax = 30
+      integer, parameter :: udm_part_param_nMax = 40
 
 C     For Material info
       integer, parameter :: num_nuclide_max = 200
@@ -43,7 +44,7 @@ C     For "tot" variables in getflt.f
       double precision, allocatable,save ::  totudm_(:)
 
 C     For final states
-      integer, parameter :: nFSmax = 10 ! maximal number of final states
+      integer, parameter :: nFSmax = 99 ! maximal number of final states
       integer, save :: set_final_state_number
       integer, save :: set_kf(nFSmax)
       integer, save :: set_isomer_level(nFSmax) ! (0: Ground, 1,2: 1st, 2nd isomer)
@@ -172,6 +173,19 @@ C                    get_ityp=11
         N = kf - kf / 1000000 * 1000000 - Z
         get_proton_neutron_number(1)=Z
         get_proton_neutron_number(2)=N
+      endif
+      return
+      end
+
+************************************************************************
+      integer function get_cell(i)
+************************************************************************
+      integer i,iblz1,iblz2
+      common /tlgeom/ iblz1,iblz2
+      if    (i==1) then
+        get_cell=iblz1
+      elseif(i==2) then
+        get_cell=iblz2
       endif
       return
       end
@@ -400,13 +414,8 @@ c      use UDINTERACTION
 
       if( chlw(icl:icl+4) .eq. 'n_int' ) then
 
-         ic = inumc(chlw,il+1,i3,'=') + 1
-
-            print*,"[n_int] ic,i3 = ",ic,i3
-         if( ic .gt. i3 ) then
-            ic=i3-1
-            print*,"[n_int] ic,i3 = ",ic,i3,"(modified)"
-         endif
+C        ic = inumc(chlw,il+1,i3,'=') + 1
+         ic = inumc(chlw,icl+4,i3,'=') + 1 ! 2023/3
 
          if( ic .gt. i3 ) goto 997
 
@@ -715,13 +724,8 @@ c      use UDPARTICLE
 
       if( chlw(icl:icl+5) .eq. 'n_part' ) then
 
-         ic = inumc(chlw,il+1,i3,'=') + 1
-
-            print*,"[n_part] ic,i3 = ",ic,i3
-         if( ic .gt. i3 ) then
-            ic=i3-1
-            print*,"[n_part] ic,i3 = ",ic,i3,"(modified)"
-         endif
+C        ic = inumc(chlw,il+1,i3,'=') + 1
+         ic = inumc(chlw,icl+4,i3,'=') + 1 ! 2023/3
 
          if( ic .gt. i3 ) goto 997
 
@@ -1023,6 +1027,14 @@ C      &          unnorm_AR/unnorm_AR_sum*fme(m)
       end subroutine fill_mat_info
 
 ************************************************************************
+      function get_random_0to1()
+************************************************************************
+      implicit real*8 (a-h,o-z)
+      get_random_0to1 = unirn(dummy)
+      return
+      end
+
+************************************************************************
       function get_random(rmin,rmax)
 ************************************************************************
       implicit real*8 (a-h,o-z)
@@ -1031,11 +1043,14 @@ C      &          unnorm_AR/unnorm_AR_sum*fme(m)
       end
 
 ************************************************************************
-      function get_random_0to1()
+      function get_random_int(imin,imax)
 ************************************************************************
       implicit real*8 (a-h,o-z)
-      get_random_0to1 = unirn(dummy)
-      return
+      integer get_random_int
+      do
+        get_random_int = imin+int((imax-imin+1)*unirn(dummy))
+        if(imin<=get_random_int .and. get_random_int<=imax) return
+      enddo
       end
 
 ************************************************************************
@@ -1047,9 +1062,7 @@ C      &          unnorm_AR/unnorm_AR_sum*fme(m)
       m0=get_mass(udm_kf_for_21)
       m1=get_mass(kf1)
       m2=get_mass(kf2)
-C       if(udm_kf_for_21==999001)print*,udm_kf_for_21,"-->",kf1,kf2
-C       if(udm_kf_for_21==999001)print*,m0,m1,m2
-      if(m0 <= m1+m2) then
+      if(m0 < m1+m2) then
         print*,"*** [CAUTION] two_body_decay_uniform failed"
         print*,"*** ",udm_kf_for_21,"-->",kf1,kf2
         return
@@ -1075,9 +1088,7 @@ C       if(udm_kf_for_21==999001)print*,m0,m1,m2
       m1=get_mass(kf1)
       m2=get_mass(kf2)
       m3=get_mass(kf3)
-C       if(udm_kf_for_21==999001)print*,udm_kf_for_21,"-->",kf1,kf2,kf3
-C       if(udm_kf_for_21==999001)print*,m0,m1,m2,m3
-      if(m0 <= m1+m2+m3) then
+      if(m0 < m1+m2+m3) then
         print*,"*** [CAUTION] three_body_decay_uniform failed"
         print*,"*** ",udm_kf_for_21,"-->",kf1,kf2,kf3
         return
@@ -1116,7 +1127,6 @@ C       if(udm_kf_for_21==999001)print*,m0,m1,m2,m3
       include 'ggsparam.inc'
       include 'ggmparam.inc'
 
-      parameter ( rpmass = 938.27d0, rnmass = 939.58d0 )
       real*8 event(20)
 
 *-----------------------------------------------------------------------
@@ -1180,6 +1190,77 @@ C       if(udm_kf_for_21==999001)print*,m0,m1,m2,m3
       end subroutine fill_final_state
 
 ************************************************************************
+      subroutine fill_final_state_for_decay
+************************************************************************
+      use GGMARRAYMOD !2020ASTOM
+      implicit real*8 (a-h,o-z)
+
+*-----------------------------------------------------------------------
+
+      real*8 event(20)
+
+*-----------------------------------------------------------------------
+
+      include 'param00.inc'
+      common /clustf/ nclst, iclust(nnn)
+      common /clustg/ jclust(0:8,nnn), qclust(0:12,nnn)
+      common /clustp/ rumpat(0:20), numpat(0:20)
+
+      integer iZN_i(2)
+      double precision mass_i_MeV
+      double precision absp_i
+      double precision total_energy_MeV
+      double precision kinetic_energy_MeV
+
+*-----------------------------------------------------------------------
+
+      nclst=set_final_state_number
+
+      do i=1,set_final_state_number
+
+        kf_i  =set_kf(i)
+        ityp_i=get_ityp(kf_i)
+        iZN_i =get_proton_neutron_number(kf_i)
+
+        iclust(i) = ipatf(ityp_i, kf_i)
+
+        jclust(0,i) = 0
+        jclust(1,i) = iZN_i(1)
+        jclust(2,i) = iZN_i(2)
+        jclust(3,i) = ityp_i
+        jclust(4,i) = 0
+        jclust(5,i) = ichgf(ityp_i, kf_i)
+        jclust(6,i) = ibryf(ityp_i, kf_i)
+        jclust(7,i) = kf_i
+        jclust(8,i) = set_isomer_level(i)
+
+        mass_i_MeV = rmtyp(ityp_i, kf_i)
+        total_energy_MeV = set_Total_Energy_in_MeV(i)
+        kinetic_energy_MeV = total_energy_MeV - mass_i_MeV
+        absp_i = sqrt( set_Px_in_MeV(i)**2
+     &               + set_Py_in_MeV(i)**2
+     &               + set_Pz_in_MeV(i)**2 )
+        qclust(0,i)  = 0.0
+        qclust(1,i)  = set_Px_in_MeV(i) / absp_i
+        qclust(2,i)  = set_Py_in_MeV(i) / absp_i
+        qclust(3,i)  = set_Pz_in_MeV(i) / absp_i
+        qclust(4,i)  = total_energy_MeV / 1000d0 ! GeV
+        qclust(5,i)  = mass_i_MeV       / 1000d0 ! GeV
+        qclust(6,i)  = set_excitation_energy_in_MeV(i)
+        qclust(7,i)  = kinetic_energy_MeV
+        qclust(8,i)  = 1.0 ! wgt / wg0
+        qclust(9,i)  = 0.0
+        qclust(10,i) = 0.0d0
+        qclust(11,i) = 0.0d0
+        qclust(12,i) = 0.0d0
+
+      enddo
+*-----------------------------------------------------------------------
+      set_decay_success=.true.
+*-----------------------------------------------------------------------
+      end subroutine fill_final_state_for_decay
+
+************************************************************************
       subroutine multiply_weight_by(ratio)
 ************************************************************************
       use MMBANKMOD !FURUTA
@@ -1188,6 +1269,62 @@ C       if(udm_kf_for_21==999001)print*,m0,m1,m2,m3
 *-----------------------------------------------------------------------
       wt(ibkwt+no,ipomp+1) = wt(ibkwt+no,ipomp+1) * ratio
       end subroutine multiply_weight_by
+
+************************************************************************
+      function udm_photonuclear_Xsec(Z,N,Kin)
+      ! Z: atomic number
+      ! N: neutron number
+      ! Kin: incident photon energy (MeV)
+************************************************************************
+      implicit none
+      double precision udm_photonuclear_Xsec
+      double precision phxs
+      integer Z,N
+      double precision Kin
+      udm_photonuclear_Xsec=phxs(Z,N,Kin)
+      return
+      end
+
+************************************************************************
+      function udm_int2char(i)
+************************************************************************
+      implicit none
+      character(len=50) :: udm_int2char
+      character(len=10) :: format
+      integer i
+C     ---------
+      if    (0<=i .and. i <10) then; format="(I1)"
+      elseif(10<=i .and. i <100) then; format="(I2)"
+      elseif(100<=i .and. i <1000) then; format="(I3)"
+      elseif(1000<=i .and. i <10000) then; format="(I4)"
+      elseif(10000<=i .and. i <100000) then; format="(I5)"
+      elseif(100000<=i .and. i <1000000) then; format="(I6)"
+      elseif(1000000<=i .and. i <10000000) then; format="(I7)"
+      elseif(10000000<=i .and. i <100000000) then; format="(I8)"
+      elseif(100000000<=i .and. i <1000000000) then; format="(I9)"
+C     ---------
+      elseif(-9<=i .and. i <0) then; format="(I2)"
+      elseif(-99<=i .and. i <-9) then; format="(I3)"
+      elseif(-999<=i .and. i <-99) then; format="(I4)"
+      elseif(-9999<=i .and. i <-999) then; format="(I5)"
+      elseif(-99999<=i .and. i <-9999) then; format="(I6)"
+      elseif(-999999<=i .and. i <-99999) then; format="(I7)"
+      elseif(-9999999<=i .and. i <-999999) then; format="(I8)"
+      elseif(-99999999<=i .and. i <-9999999) then; format="(I9)"
+      elseif(-999999999<=i .and. i <-99999999) then; format="(I10)"
+C     ---------
+      else
+        print*,"error: function udm_int2char"
+        stop
+      endif
+C     ---------
+      write (udm_int2char,format) i
+C     ---------
+      return
+      end
+
+
+
 
 ************************************************************************
       end module udm_Utility

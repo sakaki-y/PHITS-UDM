@@ -28,10 +28,10 @@ PHITS-UDM のコンパイル方法
 ::
 
     phits-udm
-     |- examples
-     |- phits-udm-for-PHITS3.29-python2.py
-     |- phits-udm-for-PHITS3.29-python3.py
-     |- phits-udm-sample1/
+     |- diff/
+     |- examples/
+     |- main.py
+     |- sample-code-1/
      |- udm_Parameter.f
 
 
@@ -51,8 +51,7 @@ PHITS-UDM のコンパイル方法
 
 ::
 
-    (Python 3の場合) python phits-udm-for-PHITS3.29-python3.py
-    (Python 2の場合) python phits-udm-for-PHITS3.29-python2.py
+    python main.py
 
 成功すれば、PHITS フォルダ内の ``src`` と同じ階層に ``src-udm/`` フォルダが生成され、以下のように表示される。
 
@@ -206,6 +205,7 @@ PHITS オリジナルはコンパイルできるが、PHITS-UDM だけコンパ�
 
     - `マニュアルの10章 <https://phits.jaea.go.jp/manual/manualJ-phits.pdf>`_
     - ${PhitsFolder}/phits/manual/manualJ-phits.pdf
+    - `Intel Fortran のインストール方法 <https://phits.jaea.go.jp/image/Install-IntelFortran-OneAPI-en.pdf>`_
     - ${PhitsFolder}/phits/document/Install_gfortran_Windows-jp.pdf
     - `PHITS Forum <https://meteor.nucl.kyushu-u.ac.jp/phitsforum/>`_
 

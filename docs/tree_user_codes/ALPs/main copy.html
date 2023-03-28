@@ -18,6 +18,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" /> 
@@ -70,7 +71,7 @@
       <li><a href="../../index.html" class="icon icon-home"></a></li>
       <li class="breadcrumb-item active">Download</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/tree_user_codes/sample-code-1/main.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/tree_user_codes/ALPs/main copy.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -80,15 +81,23 @@
              
   <section id="download">
 <h1>Download<a class="headerlink" href="#download" title="この見出しへのパーマリンク"></a></h1>
-<p><a class="reference external" href="https://github.com/sakaki-y/PHITS-UDM/tree/main/phits-udm/sample-code-1">https://github.com/sakaki-y/PHITS-UDM/tree/main/phits-udm/sample-code-1</a></p>
-<p>(PHITS-UDMに同梱されています。)</p>
+<p><a class="reference external" href="https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/ALPs">https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/ALPs</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="references">
-<h1>References<a class="headerlink" href="#references" title="この見出しへのパーマリンク"></a></h1>
-<p><a class="reference external" href="https://github.com/sakaki-y/PHITS-UDM">https://github.com/sakaki-y/PHITS-UDM</a></p>
+<section id="descriptions">
+<h1>Descriptions<a class="headerlink" href="#descriptions" title="この見出しへのパーマリンク"></a></h1>
+<p>以下のラグランジアンで記述されるALPsのPrimakoff過程に伴う生成と光子対への崩壊を扱う。</p>
+<p><span class="math notranslate nohighlight">\(\delta\mathcal{L}=
+-\frac{1}{4} g_{a\gamma\gamma} a F_{\mu\nu} F^{\mu\nu}
++\frac{1}{2} (\partial_\mu a)^2
+-\frac{1}{2} m_a^2 a^2\)</span></p>
+<p>ただし、
+<span class="math notranslate nohighlight">\(a\)</span> は ALPs、
+<span class="math notranslate nohighlight">\(m_a\)</span> は ALPs mass、
+<span class="math notranslate nohighlight">\(g_{a\gamma\gamma}\)</span> は ALPs-photon 結合定数、
+<span class="math notranslate nohighlight">\(F_{\mu\nu}\)</span> is the strength of the photon field.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -105,15 +114,15 @@
 <tr class="row-odd"><td><p>Name</p></td>
 <td><p>Parameters</p></td>
 </tr>
-<tr class="row-even"><td><p>my_interaction_1</p></td>
-<td><p>&lt;P1&gt;</p></td>
-</tr>
-<tr class="row-odd"><td><p>my_interaction_2</p></td>
-<td><p>&lt;P1&gt;</p></td>
+<tr class="row-even"><td><p>ALPs</p></td>
+<td><p>P1 P2</p></td>
 </tr>
 </tbody>
 </table>
-<p>&lt;P1&gt; = 放出される新粒子の kf-code</p>
+<div class="line-block">
+<div class="line">P1 = Primakoff 過程で生成される ALPs の kf-code (P-ID)</div>
+<div class="line">P2 = <span class="math notranslate nohighlight">\(g_{a\gamma\gamma}\)</span> [1/MeV]</div>
+</div>
 <p><strong>[ user defined particle ]</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -124,21 +133,22 @@
 <tr class="row-odd"><td><p>Name</p></td>
 <td><p>Parameters</p></td>
 </tr>
-<tr class="row-even"><td><p>my_particle_1</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>my_particle_2</p></td>
-<td><p>&lt;mass [MeV]&gt;   &lt;lifetime [second]&gt;</p></td>
+<tr class="row-even"><td><p>ALPs</p></td>
+<td><p>P1 P2</p></td>
 </tr>
 </tbody>
 </table>
 <div class="line-block">
+<div class="line">P1 = <span class="math notranslate nohighlight">\(m_a\)</span> [MeV]</div>
+<div class="line">P2 = <span class="math notranslate nohighlight">\(g_{a\gamma\gamma}\)</span> [1/MeV]</div>
+</div>
+<div class="line-block">
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="descriptions">
-<h1>Descriptions<a class="headerlink" href="#descriptions" title="この見出しへのパーマリンク"></a></h1>
-<p><a class="reference internal" href="../../tree_how_to_use/3/main.html#sec-sample-code"><span class="std std-ref">サンプルコードの解説 / ユーザーコードの作り方</span></a> を参照してください。</p>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="この見出しへのパーマリンク"></a></h1>
+<p><a class="reference external" href="https://inspirehep.net/literature/1820098">https://inspirehep.net/literature/1820098</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>

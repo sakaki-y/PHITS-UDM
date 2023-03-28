@@ -4,7 +4,7 @@
 Download
 ########################################
 
-https://github.com/sakaki-y/PHITS-UDM/tree/main/user-codes/sample-code-1
+https://github.com/sakaki-y/PHITS-UDM/tree/main/phits-udm/sample-code-1
 
 (PHITS-UDMに同梱されています。)
 

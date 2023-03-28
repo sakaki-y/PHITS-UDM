@@ -1,54 +1,13 @@
-# phits-udm version: 1.0
-
-
-
 import os, sys, glob
 
 
-
-SupportVersion="3.30"
-
-
-
-###########################################################
-DIR_ori="../src"      # Original directory
-DIR_udm="../src-udm"  # New directory for phits-udm
-###########################################################
-
-
+check_mode=False
 
 
 # ======================================================================
-if os.path.exists(DIR_udm):
-    sys.exit("@@@ ERROR: 'src-udm' already exists.")
-
-
-
-# ======================================================================
-# get version
-with open(DIR_ori+"/main.f") as f:
-    lines=f.read().split('\n')
-
-for l in lines:
-    if "Version" in l:
-        v=l.split()[4]
-        break
-
-if v!=SupportVersion:
-    print("Version error")
-    print("This python script does not support your version, "+v+".")
-    print("Supported version is "+SupportVersion+".")
-    sys.exit()
-
-
-# ======================================================================
-os.system("cp -r {} {}".format(DIR_ori,DIR_udm))
-os.system("cp udm_Parameter.f {}/.".format(DIR_udm))
-# os.system("cp phits-udm-sample1/udm_Manager.f90 {}/.".format(DIR_udm))
-# os.system("cp phits-udm-sample1/udm_int_sample*.f90  {}/.".format(DIR_udm))
-# os.system("cp phits-udm-sample1/udm_part_sample*.f90 {}/.".format(DIR_udm))
-os.chdir(DIR_udm)
-os.system("make clean")
+filename=[]
+before  =[]
+after   =[]
 
 
 # ======================================================================
@@ -65,11 +24,16 @@ def check(f,b,a):
         sys.exit("ERROR")
 
 
-
-# ======================================================================
-filename=[]
-before  =[]
-after   =[]
+# # ======================================================================
+# f="AAA.f"
+# b="""\
+# """
+# a="""\
+# """
+# if check_mode: check(f,b,a)
+# filename.append(f)
+# before  .append(b)
+# after   .append(a)
 
 
 # ======================================================================
@@ -82,7 +46,7 @@ a="""\
      &          (900000 .le. abs(kf) .and. abs(kf) .le. 999999 ) )
      &                      ) )
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -110,7 +74,7 @@ a="""\
 
       implicit real*8(a-h,o-z)
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -127,7 +91,7 @@ a="""\
       common /dcayp/  adcayp(20), bdcayp(20)
       common /udmodel/ iudmodel 
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -161,7 +125,7 @@ C        So, this function is written at the beginning of dklos.
          endif
 C <-- y.sakaki 2021/10
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -177,7 +141,7 @@ a="""\
      &      write(6,'(''*** no data in dklos.f kf = '',i7)') kprj
             if(iudmodel .gt. 0) udm_counter_dklos=1 ! y.sakaki 2021/10
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -195,7 +159,7 @@ a="""\
 *-----------------------------------------------------------------------
 *     sumary decay mode
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -214,7 +178,7 @@ a="""\
       use udm_Utility
       use udm_Manager
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -232,7 +196,7 @@ cfrtati 2021/12/17
 
       common /udmodel/ iudmodel ! y.sakaki 2021/09
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -275,7 +239,7 @@ a="""\
 *        photon for nuclear data
 *-----------------------------------------------------------------------
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -315,7 +279,7 @@ a="""\
 
                      fpl = tstep
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -366,7 +330,7 @@ C <-- y.sakaki 2021/9
 *        for high energy part
 *-----------------------------------------------------------------------
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -410,7 +374,7 @@ a="""\
 ! <-- y.sakaki 2021/09
 
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -432,7 +396,7 @@ a="""\
       use udm_Manager
 
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -477,7 +441,7 @@ C        So, this function is written at the beginning of "dcyfl" function.
 C <-- y.sakaki 2022/10
 
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -516,7 +480,7 @@ C          endif
 C <-- y.sakaki 2021/10
 
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -567,7 +531,7 @@ a="""\
       use udm_Utility
       use udm_Manager
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -603,7 +567,7 @@ C y.sakaki 2021/09   For user defined model
 *        only for muon
 *-----------------------------------------------------------------------
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -647,7 +611,291 @@ a="""\
 ! <-- y.sakaki 2021/09
 
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
+filename.append(f)
+before  .append(b)
+after   .append(a)
+
+
+# ======================================================================
+f="getflt.f"
+b="""\
+               else if( ityp .eq. 11 .and. abs(kf) .lt .100 ) then
+*                       --- lepton (neutrino) ---
+
+                call neutrino_Xsec(kf, ein, hydro, mat, lem, sigt, sigh)
+                totttl = totttl + sigt
+                tothyd = tothyd + sigh
+
+*-----------------------------------------------------------------------
+*                       --- pion ---
+*-----------------------------------------------------------------------
+"""
+a="""\
+               else if( ityp .eq. 11 .and. abs(kf) .lt .100 ) then
+*                       --- lepton (neutrino) ---
+
+                call neutrino_Xsec(kf, ein, hydro, mat, lem, sigt, sigh)
+                totttl = totttl + sigt
+                tothyd = tothyd + sigh
+
+! y.sakaki -->
+*-----------------------------------------------------------------------
+*        user defined interaction for neutrino
+*-----------------------------------------------------------------------
+               if( iudmodel .ge. 1 ) then
+                 totudm_other=totttl
+                !-----------------------------
+                 totudm    =0d0
+                 totudm_mul=0d0
+                !-----------------------------
+                 if(udm_int_nMax .gt. 0) call fill_mat_info(mat)
+                 do i = 1, udm_int_nMax
+                   udm_Kin=ein
+                   udm_kf_incident=ktyp
+                   udm_sigt=0d0
+                   call user_defined_interaction(11,i) ! Calculate: 'udm_sigt'
+                   totudm_this = udm_sigt * denm(mat)
+                   totudm_(i) = totudm_this
+                   totudm     = totudm_this               + totudm
+                   totudm_mul = totudm_this * udm_bias(i) + totudm_mul
+                 enddo
+                 totttl = totttl + totudm
+               endif
+! <-- ! y.sakaki
+
+*-----------------------------------------------------------------------
+*                       --- pion ---
+*-----------------------------------------------------------------------
+"""
+if check_mode: check(f,b,a)
+filename.append(f)
+before  .append(b)
+after   .append(a)
+
+
+# ======================================================================
+f="getflt.f"
+b="""\
+*-----------------------------------------------------------------------
+*        decay width
+*-----------------------------------------------------------------------
+
+         if( tlife .gt. 0.0 ) then
+
+               dcyfl = 1.0 / tlife / rcc
+     &               / dsqrt((( ein / rtyp ) + 2.0 )
+     &               * ( ein / rtyp ) )
+
+         end if
+"""
+a="""\
+*-----------------------------------------------------------------------
+*        decay width
+*-----------------------------------------------------------------------
+
+         if( tlife .gt. 0.0 ) then
+
+               dcyfl = 1.0 / tlife / rcc
+     &               / dsqrt((( ein / rtyp ) + 2.0 )
+     &               * ( ein / rtyp ) )
+
+         end if
+
+      if(iudmodel .gt. 0) then
+        if( 0.0d0 < tlife .and. tlife < 1d-19 ) then
+          dcyfl=1e+20
+        endif
+      endif
+"""
+if check_mode: check(f,b,a)
+filename.append(f)
+before  .append(b)
+after   .append(a)
+
+
+# ======================================================================
+f="ggm06.f"
+b="""\
+      subroutine sctpni(eein,wgti,ireg,imat,icmm)
+*                                                                      *
+*        calculate a collision of a photon with an atom.               *
+*        last modified by K.Niita on 2012/12/27                        *
+*                                                                      *
+************************************************************************
+C --- add NS 2020.04 ---
+C for USE_MOD_COUNTER
+      use mod_counter, only: rncnt,rnint,rnintr,rnpnt,rnpntr
+     &                      ,iaevt, ibevt, jaevt, jbevt
+     &                      ,aevts,aevtr,bevts,bevtr
+C for REDUCTION_COUNTER
+!$   &                      ,rncnt2,rnint2,rnintr2,rnpnt2,rnpntr2
+!$   &                      ,aevts2,aevtr2,bevts2,bevtr2
+C --- end add NS 2020.04 ---
+      use GGMBANKMOD !FURUTA
+      use NGSDATAMOD, only : bindeg
+      use GGMARRAYMOD !2020ASTOM
+!<-20211126murofushi add
+      use moddas_material
+!--->
+
+      implicit real*8 (a-h,o-z)
+"""
+a="""\
+      subroutine sctpni(eein,wgti,ireg,imat,icmm)
+*                                                                      *
+*        calculate a collision of a photon with an atom.               *
+*        last modified by K.Niita on 2012/12/27                        *
+*                                                                      *
+************************************************************************
+C --- add NS 2020.04 ---
+C for USE_MOD_COUNTER
+      use mod_counter, only: rncnt,rnint,rnintr,rnpnt,rnpntr
+     &                      ,iaevt, ibevt, jaevt, jbevt
+     &                      ,aevts,aevtr,bevts,bevtr
+C for REDUCTION_COUNTER
+!$   &                      ,rncnt2,rnint2,rnintr2,rnpnt2,rnpntr2
+!$   &                      ,aevts2,aevtr2,bevts2,bevtr2
+C --- end add NS 2020.04 ---
+      use GGMBANKMOD !FURUTA
+      use NGSDATAMOD, only : bindeg
+      use GGMARRAYMOD !2020ASTOM
+!<-20211126murofushi add
+      use moddas_material
+!--->
+      use udm_Parameter
+      use udm_Utility
+      use udm_Manager
+
+      implicit real*8 (a-h,o-z)
+"""
+if check_mode: check(f,b,a)
+filename.append(f)
+before  .append(b)
+after   .append(a)
+
+
+# ======================================================================
+f="ggm06.f"
+b="""\
+C --- change to mod_counter NS 2020.04 ---
+C --- delete NS 2020.04 --- 
+C for USE_MOD_COUNTER 
+CCC      common /kcount/ rncnt(40), rnint(200), rnintr(200),
+CCC     &                rnpnt(40), rnpntr(40)
+C --- end add NS 2020.04 ---
+cABE end
+
+cABE bugfix @2014/11/11
+!nais changed
+!!      common /pnixs/ totmpni,pnixsm(1000)
+      common /pnixs/ totmpni,pnixsm(pnlmax),ipnikind(pnlmax),egypni,
+     &               dlibmax
+!$OMP THREADPRIVATE(/pnixs/)
+      common /nrfmem/ spis, spgr, levabs, lflgnrf, mpole
+!$OMP THREADPRIVATE(/nrfmem/)
+      common /nrfdir/ usave(3)
+!$OMP THREADPRIVATE(/nrfdir/)
+
+cABE 2019/03/13
+      common /cascid/ jcasc
+!$OMP THREADPRIVATE(/cascid/)
+
+"""
+a="""\
+C --- change to mod_counter NS 2020.04 ---
+C --- delete NS 2020.04 --- 
+C for USE_MOD_COUNTER 
+CCC      common /kcount/ rncnt(40), rnint(200), rnintr(200),
+CCC     &                rnpnt(40), rnpntr(40)
+C --- end add NS 2020.04 ---
+cABE end
+
+cABE bugfix @2014/11/11
+!nais changed
+!!      common /pnixs/ totmpni,pnixsm(1000)
+      common /pnixs/ totmpni,pnixsm(pnlmax),ipnikind(pnlmax),egypni,
+     &               dlibmax
+!$OMP THREADPRIVATE(/pnixs/)
+      common /nrfmem/ spis, spgr, levabs, lflgnrf, mpole
+!$OMP THREADPRIVATE(/nrfmem/)
+      common /nrfdir/ usave(3)
+!$OMP THREADPRIVATE(/nrfdir/)
+
+cABE 2019/03/13
+      common /cascid/ jcasc
+!$OMP THREADPRIVATE(/cascid/)
+
+      common /udmodel/ iudmodel 
+
+"""
+if check_mode: check(f,b,a)
+filename.append(f)
+before  .append(b)
+after   .append(a)
+
+
+# ======================================================================
+f="ggm06.f"
+b="""\
+cABE add @2014/08/13
+            call cputime(22)
+cABE end
+cABE 2016/03/09
+            if( imuinthit .eq. 1 ) then
+             call jgdrqd_vpi(izm,inm,erg,igdrqd) ! judging function, GDR or QD or PD?
+            else
+             igdrqd = jgdrqd(izm,inm,erg) ! judging function, GDR or QD or PD?
+            endif
+
+            ipim = 0    ! S.Abe 2015/08/10
+
+*-----------------------------------------------------------------------
+*     photonuclear GDR reaction or NRF
+*-----------------------------------------------------------------------
+
+            if ( igdrqd .ge. 1 ) then ! GDR or NRF reaction occurs  2014/8/25 ogawa modifie"""
+a="""\
+cABE add @2014/08/13
+            call cputime(22)
+cABE end
+cABE 2016/03/09
+            if( imuinthit .eq. 1 ) then
+             call jgdrqd_vpi(izm,inm,erg,igdrqd) ! judging function, GDR or QD or PD?
+            else
+             igdrqd = jgdrqd(izm,inm,erg) ! judging function, GDR or QD or PD?
+            endif
+
+            ipim = 0    ! S.Abe 2015/08/10
+
+
+
+
+            if(iudmodel .ge. 1) then
+              mat_Z(1)=izm
+              mat_A(1)=izm+inm
+              do i = 1, udm_int_nMax
+                ! generate final states ------------
+                udm_Kin=eein
+                udm_kf_incident=22
+                udm_logical=.false.
+                call user_defined_interaction(-22,i) ! special action: -22
+                ! ----------------------------------
+                if(udm_logical) goto 999 ! final state is generated
+              enddo
+            endif
+
+
+
+
+
+
+*-----------------------------------------------------------------------
+*     photonuclear GDR reaction or NRF
+*-----------------------------------------------------------------------
+
+            if ( igdrqd .ge. 1 ) then ! GDR or NRF reaction occurs  2014/8/25 ogawa modifie"""
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -669,7 +917,7 @@ C...User defined particles. y.sakaki 2021/9 -->
         return
 C <-- y.sakaki 2021/9
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -695,7 +943,7 @@ C y.sakaki 2021/09  For user defined model
 
       implicit real*8 (a-h,o-z)
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -718,7 +966,7 @@ C y.sakaki 2021/09   For user defined model
       common /udmodel/ iudmodel 
 *-----------------------------------------------------------------------
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -788,7 +1036,7 @@ C <-- y.sakaki 2021/09
 *     ovly12, ovly13 or ovly14
 *-----------------------------------------------------------------------
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -802,7 +1050,7 @@ b="""\
 a="""\
  TARGET   = ../phits_$(ENVFLAGS)-udm
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -817,7 +1065,7 @@ a="""\
 	egs5mod.f \\
 	udm_Parameter.f \\
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -839,7 +1087,7 @@ SRCS0_90 = \
 #=======================================================================
 # for machine dependent or user defined source and analysis
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -860,7 +1108,7 @@ SRCS1_90 = udm_Manager.f90
 #=======================================================================
 # for param.inc
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -892,7 +1140,7 @@ OBJS = $(SRCS0:.f=.o) \\
        $(SRCS11:.f=.o) \\
        $(SRCSf90:.f90=.o)
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -917,7 +1165,7 @@ a="""\
       use udm_Manager
       implicit real*8(a-h,o-z)
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -940,7 +1188,7 @@ C y.sakaki 2021/09   For user defined model
 cABE change @2014/08/13
             call cputime(6)
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -960,7 +1208,7 @@ a="""\
      &       ( igmuppd .ge. 1 .and. gmumul .gt. 1.0d0 ) .or.
      &         iudmodel .ge. 1  ) then
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -975,7 +1223,7 @@ a="""\
             totmul = totpni * pnimul + totgmm * gmumul + totgam + totegs
      &             + totudm_mul
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -990,7 +1238,7 @@ a="""\
             prbg3 = totgmm * gmumul / totmul
             prbg_udp = totudm_mul / totmul
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1008,7 +1256,7 @@ a="""\
 
                   jcoll = 18
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1067,7 +1315,7 @@ a="""\
               print*,"Skipped: User Defined Interaction"
 ! <-- ! y.sakaki 2021/9
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1140,7 +1388,7 @@ cc H.Iwase
             endif
 ! <-- ! y.sakaki 2021/9
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1212,7 +1460,7 @@ a="""\
 *-----------------------------------------------------------------------
 *     Reaction of Neutrino + Deuteron 
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1289,7 +1537,90 @@ C <-- sakaki
 *     Non-Nucleons, Non-Elastic Collisions
 *-----------------------------------------------------------------------
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
+filename.append(f)
+before  .append(b)
+after   .append(a)
+
+
+# ======================================================================
+f="nreac.f"
+b="""\
+*-----------------------------------------------------------------------
+*     Reaction of Neutrino + Deuteron 
+*-----------------------------------------------------------------------
+
+         if( abs(ktyp) .eq. 12 .or. abs(ktyp) .eq. 14 .or. 
+     &    abs(ktyp) .eq. 16 ) then ! 2017/11/20 Ogawa Neutrino reaction
+"""
+a="""\
+*-----------------------------------------------------------------------
+*     Reaction of Neutrino + Deuteron 
+*-----------------------------------------------------------------------
+
+         if( abs(ktyp) .eq. 12 .or. abs(ktyp) .eq. 14 .or. 
+     &    abs(ktyp) .eq. 16 ) then ! 2017/11/20 Ogawa Neutrino reaction
+
+
+
+
+
+
+! y.sakaki 2021/9 -->
+            if(iudmodel .ge. 1) then
+              totmul = totudm_other + totudm_mul
+              prb_udm = totudm_mul / totmul
+              if(rn(0) .lt. prb_udm) then
+! ----------------------------------------------------------------------
+            ! Choose a process from user-defined processes ( totudm_mul_(i) )
+            ! Calculate weight for the choosed process 
+              tmp=0d0
+              r_udp=rn(0)
+              call fill_mat_info(imat)
+              do i = 1, udm_int_nMax
+                tmp=tmp + (totudm_(i) * udm_bias(i)) / totudm_mul
+                udm_Kin=eein
+                udm_kf_incident=ktyp
+                udm_sigt=0d0
+                call user_defined_interaction(11,i) ! Calculate: 'udm_sigt'
+                if(udm_sigt==0d0) cycle
+      ! If the charged particle is an incident particle, the energy may have
+      ! changed compared to that used to calculate totudm_(i) in getflt.f. 
+      ! Processes with a cross section of 0 for the changed energy are eliminated. 
+      ! For example, this can be a problem for production processes in narrow 
+      ! resonance processes. This could be addressed by
+      ! (1) Shortening the following step lengths
+      !     chard (Default value = 0.1. For electrons and positrons)
+      !     deltm (Default value = 20.12345. For others)
+      ! (2) Comment out 'if(udm_sigt==0d0) cycle' and address the problem in the udm_int* file.
+                if(r_udp .lt. tmp) then ! index=i is accepted.
+                  jcoll = 15
+                  wtmg_udp = totmul / delsig / udm_bias(i)
+                  wt(ibkwt+no,ipomp+1) = wt(ibkwt+no,ipomp+1) * wtmg_udp
+                  oldwt = wt(ibkwt+no,ipomp+1)
+                  wgti  = wt(ibkwt+no,ipomp+1)
+                  ! generate final states ------------
+                  udm_Kin=eein
+                  udm_kf_incident=ktyp
+                  call user_defined_interaction(21,i)
+                  ! ----------------------------------
+                  goto 1000
+                endif
+              enddo
+              print*,"Skipped: User Defined Interaction"
+! ----------------------------------------------------------------------
+              end if
+            endif
+! <-- ! y.sakaki 2021/9
+
+
+
+
+
+
+
+"""
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1304,7 +1635,7 @@ a="""\
       use TDCHAINMOD, only: itdc,tdchain,talldcinit !FURUTA20200522
       use udm_Utility   ! S.ABe 2021/11/04
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1323,7 +1654,7 @@ C y.sakaki 2021/10   For user defined model
 cKN 2019/05/27
       common /tscmsg/ ktsc(kvlmax), mntsc, ntsc(kvlmax)
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1384,7 +1715,7 @@ cABE 2021/11/04
 
             end if ! S.H. added (2017.8.11)
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1399,7 +1730,7 @@ a="""\
       common /gmuppd/ igmuppd ! S.Abe 2019/11/07
       common /udmodel/ iudmodel ! y.sakaki 2021/09
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1448,7 +1779,7 @@ cAbe 2019/11/07
 *-----------------------------------------------------------------------
 *           multiplying factor for photon-induced muon pair production CS
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1470,7 +1801,7 @@ c y.sakaki 2021/09/02
       data icdf(360)/157/     ! 
       data icdl(360)/7/
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1486,7 +1817,7 @@ a="""\
       use udm_Parameter
       use udm_Manager
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
@@ -1527,41 +1858,14 @@ C y.sakaki 2021/9 -->
              endif
 C <-- y.sakaki 2021/9
 """
-check(f,b,a)
+if check_mode: check(f,b,a)
 filename.append(f)
 before  .append(b)
 after   .append(a)
 
 
-# # ======================================================================
-# f="AAA.f"
-# b="""\
-# """
-# a="""\
-# """
-# check(f,b,a)
-# filename.append(f)
-# before  .append(b)
-# after   .append(a)
 
 
-
-
-
-
-
-# ======================================================================
-# sys.exit()
-i=0
-for f,b,a in zip(filename,before,after):
-    i+=1
-    with open(f    ) as FILE: s=FILE.read()
-    s=s.replace(b,a)
-    with open(f,"w") as FILE: FILE.write(s)
-    print(i,f)
-
-
-print("!! Completed !!")
 
 
 
