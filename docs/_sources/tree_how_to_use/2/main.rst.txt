@@ -11,7 +11,7 @@ example ファイルの実行方法
 
 ::
 
-    PhitsFolder=/Users/you/phits329A/phits/
+    PhitsFolder=/Users/you/phits330A/phits/
 
 ``PHITS-UDM`` をコンパイルした際にダウンロードしたフォルダ内の ``examples/`` フォルダに移動する。
 

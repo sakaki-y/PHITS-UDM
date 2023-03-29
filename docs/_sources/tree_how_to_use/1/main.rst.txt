@@ -21,7 +21,7 @@ PHITS-UDM のコンパイル方法
 
 ::
 
-    PhitsFolder=/Users/you/phits329A/phits
+    PhitsFolder=/Users/you/phits330A/phits
 
 * ダウンロードした ``phits-udm-********.zip`` を展開し、``phits-udm`` フォルダを得る。
 
@@ -144,7 +144,7 @@ PHITS オリジナルはコンパイルできるが、PHITS-UDM だけコンパ�
 
 ::
 
-    PhitsFolder=/Users/you/phits329A/phits/
+    PhitsFolder=/Users/you/phits330A/phits/
 
 * PHITS フォルダ内の ``src`` フォルダに移動
 
