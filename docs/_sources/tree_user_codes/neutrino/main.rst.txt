@@ -15,7 +15,7 @@ neutrino相互作用を計算する。
 
 100 GeV < E < 1000 GeV
 
-GENIE を利用している。
+GENIE (http://genie-mc.org/) を利用している。
 
 対応 kf-code = 12, -14。
 

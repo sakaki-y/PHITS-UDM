@@ -19,7 +19,7 @@
      - サンプルコード
      - YS
 
-   * - ALPs
+   * - Axion-like particles
      - :doc:`Link<ALPs/main>`
      - ALPs with photon coupling
      - YS
@@ -62,6 +62,11 @@
    * - その他のハドロン
      - (Under construction)
      - 
+     - YS
+
+   * - Heavy neutral leptons
+     - (Under construction)
+     - HNL
      - YS
 
    * - Dark photon
