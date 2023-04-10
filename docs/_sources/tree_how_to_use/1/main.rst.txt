@@ -123,7 +123,7 @@ PHITS オリジナルはコンパイルできるが、PHITS-UDM だけコンパ�
 
 以下のコンパイラでPHITS-UDMをコンパイルできることは確認済み。他のコンパイラ可能なバージョンをがあったら教えて下さい。
 
-* ifort (Linux Intel Fortran)
+* ifort (Intel Fortran for Linux and Mac)
 * gfotran (Linux. gcc version 8.3.0 (GCC))
 * gfotran (MacOS. gcc version 10.3.0 (Homebrew GCC 10.3.0))
 
