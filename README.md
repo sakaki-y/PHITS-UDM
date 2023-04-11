@@ -1,6 +1,8 @@
 # PHITS-UDM
 
-Document: https://sakaki-y.github.io/PHITS-UDM/
+ドキュメント: https://sakaki-y.github.io/PHITS-UDM/
+
+Document: https://sakaki-y.github.io/PHITS-UDM-en/
 
 ---
 
