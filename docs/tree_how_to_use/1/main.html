@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>実行ファイルの作成</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="実行ファイルのテスト" href="../2/main.html" />
+    <link rel="prev" title="ダウンロード" href="../download/main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> PHITS-UDM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使いかた</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../download/main.html">ダウンロード</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">実行ファイルの作成</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#phits-udm">PHITS-UDM のコンパイル方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#phits">オリジナル版 PHITS のコンパイル方法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../2/main.html">実行ファイルのテスト</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3/main.html">PHITS-UDM の使い方</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tree_user_codes/user_codes.html">ユーザーコード集</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">その他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tree_others/contact.html">連絡先</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PHITS-UDM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">実行ファイルの作成</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/tree_how_to_use/1/main.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sec-1">
+<span id="id1"></span><h1>実行ファイルの作成<a class="headerlink" href="#sec-1" title="この見出しへのパーマリンク"></a></h1>
+<section id="phits-udm">
+<span id="sec-phitsudm-compile"></span><h2>PHITS-UDM のコンパイル方法<a class="headerlink" href="#phits-udm" title="この見出しへのパーマリンク"></a></h2>
+<div class="admonition hint">
+<p class="admonition-title">ヒント</p>
+<p>PHITS-UDM をコンパイルして実行ファイルを作成する前に、オリジナルの PHITS がコンパイルできるか確認することをお勧めします。（参考：<a class="reference internal" href="#sec-phits-compile"><span class="std std-ref">オリジナル版 PHITS のコンパイル方法</span></a>）</p>
+</div>
+<ul class="simple">
+<li><p>PHITS-UDM 関連ファイル（phits-udm-<strong>****</strong>.zip）を <a class="reference internal" href="../download/main.html#sec-download"><span class="std std-ref">ここからダウンロード</span></a> する。</p></li>
+</ul>
+<p>（すでにダウンロードしている場合は次に進む。）</p>
+<ul class="simple">
+<li><p>PHITSフォルダを以下のように想定する。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PhitsFolder</span><span class="o">=/</span><span class="n">Users</span><span class="o">/</span><span class="n">you</span><span class="o">/</span><span class="n">phits330A</span><span class="o">/</span><span class="n">phits</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>ダウンロードした <code class="docutils literal notranslate"><span class="pre">phits-udm-********.zip</span></code> を展開し、<code class="docutils literal notranslate"><span class="pre">phits-udm</span></code> フォルダを得る。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phits</span><span class="o">-</span><span class="n">udm</span>
+ <span class="o">|-</span> <span class="n">diff</span><span class="o">/</span>
+ <span class="o">|-</span> <span class="n">examples</span><span class="o">/</span>
+ <span class="o">|-</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span>
+ <span class="o">|-</span> <span class="n">sample</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span>
+ <span class="o">|-</span> <span class="n">udm_Parameter</span><span class="o">.</span><span class="n">f</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>展開フォルダ <code class="docutils literal notranslate"><span class="pre">phits-udm</span></code> を PHITS フォルダにコピーする。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cp -r &lt;Your Download Folder&gt;/phits-udm ${PhitsFolder}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">phits-udm</span></code> に移動する。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ${PhitsFolder}/phits-udm/
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Python スクリプトを実行する。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>成功すれば、PHITS フォルダ内の <code class="docutils literal notranslate"><span class="pre">src</span></code> と同じ階層に <code class="docutils literal notranslate"><span class="pre">src-udm/</span></code> フォルダが生成され、以下のように表示される。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!! Completed !!
+</pre></div>
+</div>
+<p>（エラーが表示される場合は、教えて下さい。[<a class="reference internal" href="../../tree_others/contact.html#sec-contact"><span class="std std-ref">連絡先</span></a>]）</p>
+<ul class="simple">
+<li><p>ダウンロードした <code class="docutils literal notranslate"><span class="pre">phits-udm/sample-code-1</span></code> 内の PHITS-UDM のサンプルコードを <code class="docutils literal notranslate"><span class="pre">src-udm/</span></code> にコピーする。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">sample</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="mi">1</span><span class="o">/*</span> <span class="o">../</span><span class="n">src</span><span class="o">-</span><span class="n">udm</span><span class="o">/.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">src-udm/</span></code> フォルダに移動する。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ${PhitsFolder}/src-udm/
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">src-udm/</span></code> 内の <code class="docutils literal notranslate"><span class="pre">makefile</span></code> を開き、8行目のフラグ変数 <code class="docutils literal notranslate"><span class="pre">ENVFLAGS</span></code> に利用可能なコンパイラを指定する。</p></li>
+</ul>
+<p>例）Linux の Intel Fortran でコンパイルする場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ENVFLAGS</span> <span class="o">=</span> <span class="n">LinIfort</span>
+</pre></div>
+</div>
+<p>例）Linux の gfortran の場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ENVFLAGS</span> <span class="o">=</span> <span class="n">LinGfort</span>
+</pre></div>
+</div>
+<p>例）Mac の gfortran の場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ENVFLAGS</span> <span class="o">=</span> <span class="n">MacGfort</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>必要に応じて、上で指定した <code class="docutils literal notranslate"><span class="pre">ENVFLAGS</span></code> を選んだ場合にデフォルトで使用されるコンパイラを変更する。</p></li>
+</ul>
+<p>例）Mac の gfortran を使う場合、<code class="docutils literal notranslate"><span class="pre">makefile</span></code> の243行目を以下のように修正する</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>（修正前）FC        = gfortran-mp-4.8
+（修正後）FC        = gfortran
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">src-udm</span></code> 内で make する。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>コンパイルに成功したら、PHITS-UDM 用の実行ファイルが生成される。</p></li>
+</ul>
+<p>（例：Mac, gfortran の場合）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ls ${PhitsFolder}/phits_MacGfort-udm
+</pre></div>
+</div>
+<p>問題なく実行ファイルが生成されたら、以下を参考にして次に進んでください。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="../2/main.html#sec-exe-test"><span class="std std-ref">実行ファイルのテスト</span></a></p></li>
+<li><p><a class="reference internal" href="../3/main.html#sec-how-to-phitsudm"><span class="std std-ref">PHITS-UDM の使い方</span></a></p></li>
+</ul>
+</div></blockquote>
+<p>失敗したら以下の [<a class="reference internal" href="#sec-phits-compile"><span class="std std-ref">オリジナル版 PHITS のコンパイル方法</span></a>] に従って、PHITS オリジナルがコンパイルできるか確認する。</p>
+<p>PHITS オリジナルはコンパイルできるが、PHITS-UDM だけコンパイルできない場合は教えて下さい。[<a class="reference internal" href="../../tree_others/contact.html#sec-contact"><span class="std std-ref">連絡先</span></a>]</p>
+<p>以下のコンパイラでPHITS-UDMをコンパイルできることは確認済み。他のコンパイラ可能なバージョンをがあったら教えて下さい。</p>
+<ul class="simple">
+<li><p>ifort (Intel Fortran for Linux and Mac)</p></li>
+<li><p>gfotran (Linux. gcc version 8.3.0 (GCC))</p></li>
+<li><p>gfotran (MacOS. gcc version 10.3.0 (Homebrew GCC 10.3.0))</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="phits">
+<span id="sec-phits-compile"></span><h2>オリジナル版 PHITS のコンパイル方法<a class="headerlink" href="#phits" title="この見出しへのパーマリンク"></a></h2>
+<ul class="simple">
+<li><p>PHITS フォルダのパスを以下のように想定する。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PhitsFolder</span><span class="o">=/</span><span class="n">Users</span><span class="o">/</span><span class="n">you</span><span class="o">/</span><span class="n">phits330A</span><span class="o">/</span><span class="n">phits</span><span class="o">/</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>PHITS フォルダ内の <code class="docutils literal notranslate"><span class="pre">src</span></code> フォルダに移動</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ${PhitsFolder}/src
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">makefile</span></code> を開き、8行目のフラグ変数 <code class="docutils literal notranslate"><span class="pre">ENVFLAGS</span></code> に利用可能なコンパイラを指定する。</p></li>
+</ul>
+<p>例）Linux の Intel Fortran でコンパイルする場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ENVFLAGS</span> <span class="o">=</span> <span class="n">LinIfort</span>
+</pre></div>
+</div>
+<p>例）Linux の gfortran の場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ENVFLAGS</span> <span class="o">=</span> <span class="n">LinGfort</span>
+</pre></div>
+</div>
+<p>例）Mac の gfortran の場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ENVFLAGS</span> <span class="o">=</span> <span class="n">MacGfort</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>必要に応じて <code class="docutils literal notranslate"><span class="pre">makefile</span></code> 内の対応する箇所を修正する。</p></li>
+</ul>
+<p>例）Mac の gfortran を使う場合、243行目を以下のように修正する</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>（修正前）FC        = gfortran-mp-4.8
+（修正後）FC        = gfortran
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">src</span></code> フォルダ内で <code class="docutils literal notranslate"><span class="pre">make</span></code> する（コンパイルする）</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ${PhitsFolder}/src
+make
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>コンパイルに成功したら PHITS フォルダに実行ファイルが生成される。</p></li>
+</ul>
+<p>例：Mac, gfortran の場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${PhitsFolder}/phits_MacGfort
+</pre></div>
+</div>
+<ul>
+<li><p>失敗したら、以下を参考にする。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://phits.jaea.go.jp/manual/manualJ-phits.pdf">マニュアルの10章</a></p></li>
+<li><p>${PhitsFolder}/phits/manual/manualJ-phits.pdf</p></li>
+<li><p><a class="reference external" href="https://phits.jaea.go.jp/image/Install-IntelFortran-OneAPI-en.pdf">Intel Fortran のインストール方法</a></p></li>
+<li><p>${PhitsFolder}/phits/document/Install_gfortran_Windows-jp.pdf</p></li>
+<li><p><a class="reference external" href="https://meteor.nucl.kyushu-u.ac.jp/phitsforum/">PHITS Forum</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../download/main.html" class="btn btn-neutral float-left" title="ダウンロード" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../2/main.html" class="btn btn-neutral float-right" title="実行ファイルのテスト" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Yasuhito Sakaki.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
