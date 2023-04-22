@@ -59,7 +59,7 @@ PHITS-UDM のコンパイル方法
 
     !! Completed !!
 
-（エラーが表示される場合は、教えて下さい。[:ref:`sec_contact`]）
+（エラーが表示される場合は、教えて下さい。[`PHITS Forum <https://meteor.nucl.kyushu-u.ac.jp/phitsforum/>`_ / :ref:`sec_contact`])）
 
 * ダウンロードした ``phits-udm/sample-code-1`` 内の PHITS-UDM のサンプルコードを ``src-udm/`` にコピーする。
 
@@ -104,7 +104,7 @@ PHITS-UDM のコンパイル方法
 
     make
 
-* コンパイルに成功したら、PHITS-UDM 用の実行ファイルが生成される。
+* コンパイルに成功したら、**PHITS-UDM 用の実行ファイルがPHITSフォルダに生成される**。
 
 （例：Mac, gfortran の場合）
 
