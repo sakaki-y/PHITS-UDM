@@ -3,7 +3,7 @@ import diff
 
 
 # ======================================================================
-SupportedVersions=["3.30"]
+SupportedVersions=["3.30", "3.31"]
 
 
 # ======================================================================
@@ -14,6 +14,7 @@ DIR_udm="../src-udm"  # New directory for phits-udm
 # ======================================================================
 if os.path.exists(DIR_udm):
     sys.exit("@@@ ERROR: 'src-udm' already exists.")
+    # os.system("rm -r {}".format(DIR_udm))
 
 
 # ======================================================================
@@ -35,10 +36,8 @@ if v not in SupportedVersions:
     sys.exit()
 
 
-if v=="3.30":
-    fL=diff.v330.filename
-    bL=diff.v330.before
-    aL=diff.v330.after
+if v=="3.30": fL=diff.v330.filename; bL=diff.v330.before; aL=diff.v330.after;
+if v=="3.31": fL=diff.v331.filename; bL=diff.v331.before; aL=diff.v331.after;
 
 
 # ======================================================================

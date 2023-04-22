@@ -8,7 +8,7 @@ use udm_Parameter
 use udm_Utility
 implicit none
 private ! Functions and variables are set to private by default.
-public :: caller ! The 'caller' subroutine should be private.
+public :: caller ! The 'caller' subroutine should be public.
 
 !-----------------------------------------------------------------------
 ! Default variables

@@ -59,6 +59,9 @@ PHITS に既存の粒子の崩壊パターンの追加や、寿命の変更も�
 
 
 .. toctree::
+   news
+
+.. toctree::
    :caption: 使いかた
    :hidden:
 
@@ -66,7 +69,6 @@ PHITS に既存の粒子の崩壊パターンの追加や、寿命の変更も�
    /tree_how_to_use/1/main
    /tree_how_to_use/2/main
    /tree_how_to_use/3/main
-
 
 .. toctree::
    :caption: Examples
