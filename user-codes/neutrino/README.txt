@@ -1,4 +1,4 @@
-以下のファイルをダウンロードし、それを解凍したディレクトリを src-udm ディレクトリに入れてください。
+Download the following file and place the unzipped folder in your src-udm/ folder.
 
 https://research.kek.jp/people/sakakiy/files/udm_int_neutrino.zip
 

@@ -1,4 +1,4 @@
-以下のファイルをダウンロードし、それを解凍したディレクトリを src-udm ディレクトリに入れてください。
+Download the following file and place the unzipped folder in your src-udm/ folder.
 
-https://research.kek.jp/people/sakakiy/files/udm_int_pni_data.zip
+https://research.kek.jp/people/sakakiy/files/udm_int_pni_data-20230425.zip
 
