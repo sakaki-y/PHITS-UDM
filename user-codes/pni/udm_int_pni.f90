@@ -23,8 +23,8 @@ integer, save :: kf_initial(num_initial) = (/ 22 /) ! The kf-codes (particle IDs
 integer, parameter :: nZ = 6
 integer, parameter :: ZminUseData = 26
 integer, parameter :: Z_array(nZ) = (/ 26,41,50,60,74,82 /)
-double precision, parameter :: KinDataMin = 200d0
-double precision, parameter :: KinDataMax = 8229d0
+double precision, parameter :: KinDataMin = 140d0
+double precision, parameter :: KinDataMax = 1d+6
 
 integer, parameter :: nkfMax = 2500
 integer, parameter :: nKinMax = 200
@@ -41,7 +41,7 @@ subroutine print_comments
 ! print*,"****************************************"
 print*,"Note:",trim(Name)
 print*,"Z containing data: 26,41,50,60,74,82"
-print*,"Energy range: 200-8229 MeV"
+print*,"Energy range: 140 MeV - 1 TeV"
 ! print*,"****************************************"
 end subroutine print_comments
 
