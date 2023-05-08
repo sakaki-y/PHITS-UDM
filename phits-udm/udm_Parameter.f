@@ -302,7 +302,22 @@ C     ------------------------------------------------------------------
 ************************************************************************
       common /paran/ icfn(100), ilfn(100), chfn(100) ! phits paths
       character chfn*100
+C     ------------------------------------------------------------------
+      integer*8 :: iranji64 ! S.H. xorshift (2020.2.6)
+      common /randm4/ rnfb,rnfs,rngb,rngs,rnmult,ranj,rani,
+     &                rnrtc,nstrid,inif, iranji64
+      integer*8 :: iransb64 ! S.H. xorshift (2020.2.6)
+      common /randtp/ rijk,rans,ranb, iransb64
+C     ------------------------------------------------------------------
       udm_phits_path=chfn(1)(1:ilfn(1))
+C     ------------------------------------------------------------------
+C     To make random numbers available at the time of 'initialize' of the udm module.
+C     If this is not done, random numbers cannot be used until a non-zero value is assigned to iransb64 in ovly12.f.
+      iransb64 = iranji64
+      do i=1,1000
+        tmp=unirn(dummy)
+      enddo
+C     ------------------------------------------------------------------
       end subroutine udm_initialize_Utility
 
 
@@ -1323,6 +1338,140 @@ C     ---------
       return
       end
 
+************************************************************************
+      function udm_double2char(format,x)
+************************************************************************
+      implicit none
+      character(len=50) :: udm_double2char
+      character(len=*)  :: format
+      double precision x
+C     ---------
+      write (udm_double2char,format) x
+C     ---------
+      return
+      end
+
+************************************************************************
+      subroutine udm_get_atomic_information(Z,A,c,c2)
+************************************************************************
+      implicit none
+      integer Z, A
+      character(len=3 ) :: c
+      character(len=13) :: c2
+C     https://www.angelo.edu/faculty/kboudrea/periodic/structure_mass.htm
+      if(Z==1  )then;A=1.00797  ;c="H"  ;c2="Hydrogen"     ;return;endif
+      if(Z==2  )then;A=4.00260  ;c="He" ;c2="Helium"       ;return;endif
+      if(Z==3  )then;A=6.941    ;c="Li" ;c2="Lithium"      ;return;endif
+      if(Z==4  )then;A=9.01218  ;c="Be" ;c2="Beryllium"    ;return;endif
+      if(Z==5  )then;A=10.81    ;c="B"  ;c2="Boron"        ;return;endif
+      if(Z==6  )then;A=12.011   ;c="C"  ;c2="Carbon"       ;return;endif
+      if(Z==7  )then;A=14.0067  ;c="N"  ;c2="Nitrogen"     ;return;endif
+      if(Z==8  )then;A=15.9994  ;c="O"  ;c2="Oxygen"       ;return;endif
+      if(Z==9  )then;A=18.998403;c="F"  ;c2="Fluorine"     ;return;endif
+      if(Z==10 )then;A=20.179   ;c="Ne" ;c2="Neon"         ;return;endif
+      if(Z==11 )then;A=22.98977 ;c="Na" ;c2="Sodium"       ;return;endif
+      if(Z==12 )then;A=24.305   ;c="Mg" ;c2="Magnesium"    ;return;endif
+      if(Z==13 )then;A=26.98154 ;c="Al" ;c2="Aluminum"     ;return;endif
+      if(Z==14 )then;A=28.0855  ;c="Si" ;c2="Silicon"      ;return;endif
+      if(Z==15 )then;A=30.97376 ;c="P"  ;c2="Phosphorus"   ;return;endif
+      if(Z==16 )then;A=32.06    ;c="S"  ;c2="Sulfur"       ;return;endif
+      if(Z==17 )then;A=35.453   ;c="Cl" ;c2="Chlorine"     ;return;endif
+      if(Z==18 )then;A=39.948   ;c="Ar" ;c2="Argon"        ;return;endif
+      if(Z==19 )then;A=39.0983  ;c="K"  ;c2="Potassium"    ;return;endif
+      if(Z==20 )then;A=40.08    ;c="Ca" ;c2="Calcium"      ;return;endif
+      if(Z==21 )then;A=44.9559  ;c="Sc" ;c2="Scandium"     ;return;endif
+      if(Z==22 )then;A=47.90    ;c="Ti" ;c2="Titanium"     ;return;endif
+      if(Z==23 )then;A=50.9415  ;c="V"  ;c2="Vanadium"     ;return;endif
+      if(Z==24 )then;A=51.996   ;c="Cr" ;c2="Chromium"     ;return;endif
+      if(Z==25 )then;A=54.9380  ;c="Mn" ;c2="Manganese"    ;return;endif
+      if(Z==26 )then;A=55.847   ;c="Fe" ;c2="Iron"         ;return;endif
+      if(Z==27 )then;A=58.9332  ;c="Co" ;c2="Cobalt"       ;return;endif
+      if(Z==28 )then;A=58.70    ;c="Ni" ;c2="Nickel"       ;return;endif
+      if(Z==29 )then;A=63.546   ;c="Cu" ;c2="Copper"       ;return;endif
+      if(Z==30 )then;A=65.38    ;c="Zn" ;c2="Zinc"         ;return;endif
+      if(Z==31 )then;A=69.72    ;c="Ga" ;c2="Gallium"      ;return;endif
+      if(Z==32 )then;A=72.59    ;c="Ge" ;c2="Germanium"    ;return;endif
+      if(Z==33 )then;A=74.9216  ;c="As" ;c2="Arsenic"      ;return;endif
+      if(Z==34 )then;A=78.96    ;c="Se" ;c2="Selenium"     ;return;endif
+      if(Z==35 )then;A=79.904   ;c="Br" ;c2="Bromine"      ;return;endif
+      if(Z==36 )then;A=83.80    ;c="Kr" ;c2="Krypton"      ;return;endif
+      if(Z==37 )then;A=85.4678  ;c="Rb" ;c2="Rubidium"     ;return;endif
+      if(Z==38 )then;A=87.62    ;c="Sr" ;c2="Strontium"    ;return;endif
+      if(Z==39 )then;A=88.9059  ;c="Y"  ;c2="Yttrium"      ;return;endif
+      if(Z==40 )then;A=91.22    ;c="Zr" ;c2="Zirconium"    ;return;endif
+      if(Z==41 )then;A=92.9064  ;c="Nb" ;c2="Niobium"      ;return;endif
+      if(Z==42 )then;A=95.94    ;c="Mo" ;c2="Molybdenum"   ;return;endif
+      if(Z==43 )then;A=98       ;c="Tc" ;c2="Technetium"   ;return;endif
+      if(Z==44 )then;A=101.07   ;c="Ru" ;c2="Ruthenium"    ;return;endif
+      if(Z==45 )then;A=102.9055 ;c="Rh" ;c2="Rhodium"      ;return;endif
+      if(Z==46 )then;A=106.4    ;c="Pd" ;c2="Palladium"    ;return;endif
+      if(Z==47 )then;A=107.868  ;c="Ag" ;c2="Silver"       ;return;endif
+      if(Z==48 )then;A=112.41   ;c="Cd" ;c2="Cadmium"      ;return;endif
+      if(Z==49 )then;A=114.82   ;c="In" ;c2="Indium"       ;return;endif
+      if(Z==50 )then;A=118.69   ;c="Sn" ;c2="Tin"          ;return;endif
+      if(Z==51 )then;A=121.75   ;c="Sb" ;c2="Antimony"     ;return;endif
+      if(Z==52 )then;A=127.60   ;c="Te" ;c2="Tellurium"    ;return;endif
+      if(Z==53 )then;A=126.9045 ;c="I"  ;c2="Iodine"       ;return;endif
+      if(Z==54 )then;A=131.30   ;c="Xe" ;c2="Xenon"        ;return;endif
+      if(Z==55 )then;A=132.9054 ;c="Cs" ;c2="Cesium"       ;return;endif
+      if(Z==56 )then;A=137.33   ;c="Ba" ;c2="Barium"       ;return;endif
+      if(Z==57 )then;A=138.9055 ;c="La" ;c2="Lanthanum"    ;return;endif
+      if(Z==58 )then;A=140.12   ;c="Ce" ;c2="Cerium"       ;return;endif
+      if(Z==59 )then;A=140.9077 ;c="Pr" ;c2="Praseodymium" ;return;endif
+      if(Z==60 )then;A=144.24   ;c="Nd" ;c2="Neodymium"    ;return;endif
+      if(Z==61 )then;A=145      ;c="Pm" ;c2="Promethium"   ;return;endif
+      if(Z==62 )then;A=150.4    ;c="Sm" ;c2="Samarium"     ;return;endif
+      if(Z==63 )then;A=151.96   ;c="Eu" ;c2="Europium"     ;return;endif
+      if(Z==64 )then;A=157.25   ;c="Gd" ;c2="Gadolinium"   ;return;endif
+      if(Z==65 )then;A=158.9254 ;c="Tb" ;c2="Terbium"      ;return;endif
+      if(Z==66 )then;A=162.50   ;c="Dy" ;c2="Dysprosium"   ;return;endif
+      if(Z==67 )then;A=164.9304 ;c="Ho" ;c2="Holmium"      ;return;endif
+      if(Z==68 )then;A=167.26   ;c="Er" ;c2="Erbium"       ;return;endif
+      if(Z==69 )then;A=168.9342 ;c="Tm" ;c2="Thulium"      ;return;endif
+      if(Z==70 )then;A=173.04   ;c="Yb" ;c2="Ytterbium"    ;return;endif
+      if(Z==71 )then;A=174.967  ;c="Lu" ;c2="Lutetium"     ;return;endif
+      if(Z==72 )then;A=178.49   ;c="Hf" ;c2="Hafnium"      ;return;endif
+      if(Z==73 )then;A=180.9479 ;c="Ta" ;c2="Tantalum"     ;return;endif
+      if(Z==74 )then;A=183.85   ;c="W"  ;c2="Tungsten"     ;return;endif
+      if(Z==75 )then;A=186.207  ;c="Re" ;c2="Rhenium"      ;return;endif
+      if(Z==76 )then;A=190.2    ;c="Os" ;c2="Osmium"       ;return;endif
+      if(Z==77 )then;A=192.22   ;c="Ir" ;c2="Iridium"      ;return;endif
+      if(Z==78 )then;A=195.09   ;c="Pt" ;c2="Platinum"     ;return;endif
+      if(Z==79 )then;A=196.9665 ;c="Au" ;c2="Gold"         ;return;endif
+      if(Z==80 )then;A=200.59   ;c="Hg" ;c2="Mercury"      ;return;endif
+      if(Z==81 )then;A=204.37   ;c="Tl" ;c2="Thallium"     ;return;endif
+      if(Z==82 )then;A=207.2    ;c="Pb" ;c2="Lead"         ;return;endif
+      if(Z==83 )then;A=208.9804 ;c="Bi" ;c2="Bismuth"      ;return;endif
+      if(Z==84 )then;A=209      ;c="Po" ;c2="Polonium"     ;return;endif
+      if(Z==85 )then;A=210      ;c="At" ;c2="Astatine"     ;return;endif
+      if(Z==86 )then;A=222      ;c="Rn" ;c2="Radon"        ;return;endif
+      if(Z==87 )then;A=223      ;c="Fr" ;c2="Francium"     ;return;endif
+      if(Z==88 )then;A=226.0254 ;c="Ra" ;c2="Radium"       ;return;endif
+      if(Z==89 )then;A=227.0278 ;c="Ac" ;c2="Actinium"     ;return;endif
+      if(Z==90 )then;A=232.0381 ;c="Th" ;c2="Thorium"      ;return;endif
+      if(Z==91 )then;A=231.0359 ;c="Pa" ;c2="Protactinium" ;return;endif
+      if(Z==92 )then;A=238.029  ;c="U"  ;c2="Uranium"      ;return;endif
+      if(Z==93 )then;A=237.0482 ;c="Np" ;c2="Neptunium"    ;return;endif
+      if(Z==94 )then;A=242      ;c="Pu" ;c2="Plutonium"    ;return;endif
+      if(Z==95 )then;A=243      ;c="Am" ;c2="Americium"    ;return;endif
+      if(Z==96 )then;A=247      ;c="Cm" ;c2="Curium"       ;return;endif
+      if(Z==97 )then;A=247      ;c="Bk" ;c2="Berkelium"    ;return;endif
+      if(Z==98 )then;A=251      ;c="Cf" ;c2="Californium"  ;return;endif
+      if(Z==99 )then;A=252      ;c="Es" ;c2="Einsteinium"  ;return;endif
+      if(Z==100)then;A=257      ;c="Fm" ;c2="Fermium"      ;return;endif
+      if(Z==101)then;A=258      ;c="Md" ;c2="Mendelevium"  ;return;endif
+      if(Z==102)then;A=250      ;c="No" ;c2="Nobelium"     ;return;endif
+      if(Z==103)then;A=260      ;c="Lr" ;c2="Lawrencium"   ;return;endif
+      if(Z==104)then;A=261      ;c="Rf" ;c2="Rutherfordium";return;endif
+      if(Z==105)then;A=262      ;c="Db" ;c2="Dubnium"      ;return;endif
+      if(Z==106)then;A=263      ;c="Sg" ;c2="Seaborgium"   ;return;endif
+      if(Z==107)then;A=262      ;c="Bh" ;c2="Bohrium"      ;return;endif
+      if(Z==108)then;A=255      ;c="Hs" ;c2="Hassium"      ;return;endif
+      if(Z==109)then;A=256      ;c="Mt" ;c2="Meitnerium"   ;return;endif
+      if(Z==110)then;A=269      ;c="Ds" ;c2="Darmstadtium" ;return;endif
+      if(Z==111)then;A=272      ;c="Rg" ;c2="Roentgenium"  ;return;endif
+      if(Z==112)then;A=277      ;c="Uub";c2="Ununbiium"    ;return;endif
+      end subroutine udm_get_atomic_information
 
 
 

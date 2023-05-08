@@ -124,10 +124,10 @@ double precision Emucm , pxmucm ,pymucm ,pzmucm , pmucm
 double precision Emulab, pxmulab,pymulab,pzmulab
 double precision, parameter :: pi = 3.14159d0
 
-! udm_Ein       : mother's Kinetic Energy [MeV]
-! udm_kf_mother : mother's kf-code
+! udm_Kin         : mother's Kinetic Energy [MeV]
+! udm_kf_incident : mother's kf-code
 
-Ein = udm_Ein ! Initial Kinetic Energy [MeV]
+Ein = udm_Kin ! Initial Kinetic Energy [MeV]
 Z_A_hit = choose_hit_nuclide_Z_A(Ein)
 Z_hit = Z_A_hit(1)
 A_hit = Z_A_hit(2)
@@ -211,8 +211,7 @@ do i = 1, n_sampling_max
 !   set_isomer_level            (?) = ?? ! (Default=0)   0: Not nuclear isomer, 1: 1st nuclear isomer, 2: 2nd nuclear isomer 
 !   set_excitation_energy_in_MeV(?) = ?? ! (Default=0.0) Excitation energy [MeV] 
 
-    ! call fill_final_state
-    call fill_final_state2
+    call fill_final_state
     return
   endif
   ! --------------------------------------------------------------
@@ -270,7 +269,7 @@ logical match_initial
 integer i
 match_initial = .false.
 do i = 1, num_initial
-  if(udm_kf_mother .eq. kf_initial(i)) then
+  if(udm_kf_incident .eq. kf_initial(i)) then
     match_initial = .true.
     exit
   endif
@@ -303,7 +302,7 @@ subroutine calc_averaged_Xsec
 !=======================================================================
 integer i
 do i = 1, num_nuclide
-  udm_sigt = udm_sigt + mat_ratio(i)*Xsec_per_atom( udm_Ein, mat_Z(i), mat_A(i) )
+  udm_sigt = udm_sigt + mat_ratio(i)*Xsec_per_atom( udm_Kin, mat_Z(i), mat_A(i) )
 enddo
 end subroutine calc_averaged_Xsec
 
