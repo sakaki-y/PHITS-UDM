@@ -124,8 +124,8 @@ double precision Emucm , pxmucm ,pymucm ,pzmucm , pmucm
 double precision Emulab, pxmulab,pymulab,pzmulab
 double precision, parameter :: pi = 3.14159d0
 
-! udm_Kin         : mother's Kinetic Energy [MeV]
-! udm_kf_incident : mother's kf-code
+! udm_Kin         : incident particles's Kinetic Energy [MeV]
+! udm_kf_incident : incident particles's kf-code
 
 Ein = udm_Kin ! Initial Kinetic Energy [MeV]
 Z_A_hit = choose_hit_nuclide_Z_A(Ein)
