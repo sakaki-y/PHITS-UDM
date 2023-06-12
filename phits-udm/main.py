@@ -3,7 +3,7 @@ import diff
 
 
 # ======================================================================
-SupportedVersions=["3.30", "3.31"]
+SupportedVersions=["3.30", "3.31", "3.32"]
 
 
 # ======================================================================
@@ -38,6 +38,7 @@ if v not in SupportedVersions:
 
 if v=="3.30": fL=diff.v330.filename; bL=diff.v330.before; aL=diff.v330.after;
 if v=="3.31": fL=diff.v331.filename; bL=diff.v331.before; aL=diff.v331.after;
+if v=="3.32": fL=diff.v332.filename; bL=diff.v332.before; aL=diff.v332.after;
 
 
 # ======================================================================
