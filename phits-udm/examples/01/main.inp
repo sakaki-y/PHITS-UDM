@@ -2,27 +2,25 @@ $====================================================
 [ parameters ]
   icntl  = 0      $ 0: Normal calculation (See manual)
   maxcas = 1000   $ Injection number per batch
-  maxbch = 1      $ Natch number
+  maxbch = 1      $ Batch number
 
   negs = 2        $ Electromagnetic shower. 1:Low energy mode. 2:High energy mode.
-
-  iudmodel = 1    $ User defined model. 0:Off (default). 1:On
 
 
 $====================================================
 [ user defined interaction ]
-  n_int = 1
+  number = 1
 
-$ Name               Bias    Parameters
-  my_interaction_1   1.0e+3  900000
+$ Name             Bias   Parameters
+  my_interaction   1e+3   900000
 
 
 $====================================================
 [ user defined particle ]
-  n_part = 1
+  number = 1
 
-$ Name           kfcode   Parameters
-  my_particle_1  900000
+$ Name         kfcode   Parameters
+  my_particle  900000   50 0.1e-9
 
 
 $====================================================
